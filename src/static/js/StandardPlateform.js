@@ -1,6 +1,6 @@
 const Plateform = require('./Plateform');
 
-class StandardPlateform {
+class StandardPlateform extends Plateform {
 
     /**
      * Crée une plateform standard qui ne bougent pas, ne disparais pas et ne se brise pas
