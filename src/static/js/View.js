@@ -1,8 +1,8 @@
 class View {
-    constructor() {
+    constructor(img_path) {
         
         this._canvas = document.getElementById('my_canvas');
-        this._canvas.style.backgroundImage = 'url(../img/bck@2x.png)';
+        this._canvas.style.backgroundImage = 'url(../tiles/bck@2x.png)';
         this._canvas.style.backgroundSize = 'cover';
         this.ctx     = this._canvas.getContext('2d');
         
@@ -11,11 +11,11 @@ class View {
         
         /* Chargement des images */
         this.HEXTILES_IMAGE = new Image();
-        this.HEXTILES_IMAGE.src = '../img/game-tiles.png';
+        this.HEXTILES_IMAGE.src = '../tiles/game-tiles.png';
         this.DOODLE_LEFT = new Image();
-        this.DOODLE_LEFT.src = '../img/lik-left@2x.png';
+        this.DOODLE_LEFT.src = '../tiles/lik-left@2x.png';
         this.DOODLE_RIGHT = new Image();
-        this.DOODLE_RIGHT.src = '../img/lik-right@2x.png';
+        this.DOODLE_RIGHT.src = '../tiles/lik-right@2x.png';
 
         this.doodle = this.DOODLE_RIGHT;
 
@@ -70,21 +70,47 @@ class View {
     Display(position) {
         let x = position.x;
         let y = position.y;
-        console.log(position)
+        console.log(position);
         
         this.ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
         
-        // Dessiner les lignes.
-        // this.ctx.beginPath(); // Nouveau tracé.
-        // this.ctx.moveTo(100, 0); // Déplacement du crayon en (100, 0).
-        // this.ctx.lineTo(100, 100); // Dessiner la ligne en (150, 100).
-        // this.ctx.stroke(); // Afficher la ligne.
-        // this.ctx.beginPath(); // Nouveau tracé.
-        // this.ctx.moveTo(0, 100); // Déplacement du crayon en (100, 0).
-        // this.ctx.lineTo(100, 100); // Dessiner la ligne en (150, 100).
-        // this.ctx.stroke(); // Afficher la ligne.
-        
+        // Dessiner les tuiles.
+        this.GetTiles();
+        this.tile_grid.forEach(element => {
+
+            // Recupere la tuile correspondante.
+            let tile;
+            switch (element[0]){
+                case 0:
+                    tile = this.green_slab;
+                    break;
+                case 1:
+                    tile = this.blue_slab;
+                    break;
+                case 2:
+                    if (element[3] == 1){
+                        tile = this.white_slab;
+                    } else {
+                        tile = this.white_brock_slab;
+                    }
+                    tile = this.white_slab;
+                    break;
+            };
+
+            this.ctx.drawImage(this.HEXTILES_IMAGE,tile.x,tile.y,tile.w,tile.h,element[1],element[2],tile.w,tile.h);
+        });
+
         // Dessiner doodle.
         this.ctx.drawImage(this.doodle,0,0,140,120,x, y, 140/2.5, 120/2.5);
     }
+
+    GetTiles(callback){
+
+        this.tile_grid = [
+            [0, 100, 100, 0],
+            [1, 250, 50, 0],
+            [2, 150, 300, 0],
+        ];
+
+        }
 }
