@@ -35,7 +35,7 @@ class Model {
     Move(fps) {
         this.gravitySpeed += Model.GRAVITY;
         this.doodle.Position.x += this.direction * Model.SPEED / fps,
-        this.doodle.Position.y += this.gravitySpeed / fps
+        this.doodle.Position.y += this.gravitySpeed / fps;
 
 
         if (this.doodle.Position.y > 440) {
@@ -43,6 +43,12 @@ class Model {
         }
 
         this.b_Display(this.doodle.Position);
+
+        /**
+         * Update les plateformes
+         */
+        this.grid.Update(fps);
+
 
         this.doodle.IsOnBorder(0,Model.CANVASWIDTH)
     }

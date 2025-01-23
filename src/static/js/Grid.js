@@ -27,6 +27,7 @@ class Grid {
      * @returns this.width 
      */
     get Width() { return this.width }
+    GetWidth() { return this.width }
 
     /**
      * Retourne le nombre de colonne de mon tableau
@@ -93,5 +94,17 @@ class Grid {
      *               Méthode de Class
      * ==================================================
      */
+
+    /**
+     * Update les plateformes de type 1&2*
+     */
+    Update(fps){
+        this.grid.forEach(element => {
+            switch(element.type){
+                case 1:
+                    element.Update(fps)
+            }
+        });
+    }
 
 }
