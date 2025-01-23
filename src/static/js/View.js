@@ -71,20 +71,16 @@ class View {
     Display(position) {
         let x = position.x;
         let y = position.y;
-        console.log(position);
         
         this.ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
         
         // Dessiner les tuiles.
         this.tile_grid = this.GetTiles();
-
-        console.log(this.tile_grid)
-
         this.tile_grid.grid.forEach(element => {
 
             // Recupere la tuile correspondante.
             let tile;
-            switch (element.value){
+            switch (element.type){
                 case 0:
                     tile = this.green_slab;
                     break;
@@ -101,7 +97,7 @@ class View {
                     break;
             };
 
-            this.ctx.drawImage(this.HEXTILES_IMAGE,tile.x,tile.y,tile.w,tile.h,element[1],element[2],tile.w,tile.h);
+            this.ctx.drawImage(this.HEXTILES_IMAGE,tile.x,tile.y,tile.w,tile.h,element.XCord,element.YCord,tile.w,tile.h);
         });
 
         // Dessiner doodle.

@@ -8,21 +8,19 @@ class BreakingPlateform extends Plateform {
      */
     constructor(xCord,yCord){
         super(2,xCord,yCord)
-        this.nbHit = 1
+        this.state = 0
     }
 
     /**
      * Permet de récuéprer le nombre de hit restant de la plateform
      * @returns this.nbHit qui est le nombre de coup
      */
-    GetNbHit(){
-        return this.nbHit
-    }
+    get State() { return this.state }
 
     /**
      * Met à 0 le nombre de coup total
      */
-    SetNbHitToZero(){
-        this.nbHit = 0
+    SetStateToOne(){
+        this.state = 1
     }
 }
