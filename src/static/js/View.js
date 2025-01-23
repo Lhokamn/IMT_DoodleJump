@@ -77,11 +77,14 @@ class View {
         
         // Dessiner les tuiles.
         this.tile_grid = this.GetTiles();
-        this.tile_grid.forEach(element => {
+
+        console.log(this.tile_grid)
+
+        this.tile_grid.grid.forEach(element => {
 
             // Recupere la tuile correspondante.
             let tile;
-            switch (element[0]){
+            switch (element.value){
                 case 0:
                     tile = this.green_slab;
                     break;
@@ -89,7 +92,7 @@ class View {
                     tile = this.blue_slab;
                     break;
                 case 2:
-                    if (element[3] == 1){
+                    if (element.state == 1){
                         tile = this.white_slab;
                     } else {
                         tile = this.white_brock_slab;

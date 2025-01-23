@@ -8,9 +8,8 @@ class Grid {
         this.jumpMax = 30;
         this.grid = [];
 
-        // hauteur plateform : 15, longueur 57
-        this.grid.push(new StandardPlateform((width/2 - 57/2),height - 15 ))
-        this.InitGrid()
+        
+        this._InitGrid()
     }
 
     /**
@@ -51,7 +50,10 @@ class Grid {
     /**
      * Permet de remplir la grille de façon aléatoire au démarrage du jeux. Au départ, nous mettons uniquement des plateform verte
      */
-    InitGrid(){
+    _InitGrid(){
+        // hauteur plateform : 15, longueur 57
+        this.grid.push(new StandardPlateform((this.width/2 - 57/2),this.height - 15 ))
+
         for(let yCord = 40; yCord < this.height; yCord += 40){
             let xCord = Math.floor(Math.random()* (this.width) - 57)  // Récupère une valeur entre 0 et le nombre maximum de pixel du canvas
             this.grid.push(new StandardPlateform(xCord, yCord))
