@@ -23,6 +23,7 @@ class View {
         this.green_slab = {x: 1, y: 1, w: 57, h: 15};
         this.blue_slab = {x: 1, y: 19, w: 57, h: 15};
         this.white_slab = {x: 1, y: 55, w: 57, h: 15};
+        this.white_brock_slab = {x: 1, y: 73, w: 57, h: 15};
 
         this.Events();
     }
@@ -75,7 +76,7 @@ class View {
         this.ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
         
         // Dessiner les tuiles.
-        this.GetTiles();
+        this.tile_grid = this.GetTiles();
         this.tile_grid.forEach(element => {
 
             // Recupere la tuile correspondante.
@@ -104,13 +105,9 @@ class View {
         this.ctx.drawImage(this.doodle,0,0,140,120,x, y, 140/2.5, 120/2.5);
     }
 
-    GetTiles(callback){
+    BindGetTiles(callback){
 
-        this.tile_grid = [
-            [0, 100, 100, 0],
-            [1, 250, 50, 0],
-            [2, 150, 300, 0],
-        ];
+        this.GetTiles = callback
 
         }
 }
