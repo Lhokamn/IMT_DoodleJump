@@ -27,23 +27,18 @@ class Grid {
      * @returns this.width 
      */
     get Width() { return this.width }
-    GetWidth() { return this.width }
 
     /**
      * Retourne le nombre de colonne de mon tableau
      * @returns this.width
      */
-    Getheight(){
-        return this.height
-    }
+    get Height (){ return this.height }
 
     /**
      * Retourne la grille de jeux
      * @returns this.grid qui est la grille
      */
-    GetGrid(){
-        return this.grid
-    }
+    get Grid() {return this.grid}
 
 
     /**
