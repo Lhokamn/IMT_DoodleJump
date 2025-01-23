@@ -13,8 +13,7 @@ class Plateform{
             throw new TypeError('Abstract class "Plateform" cannot be instantiated directly');
         }
         this.value = value;
-        this.xCord = xCord;
-        this.yCord = yCord;
+        this.position = {x: xCord, y:yCord}
     }
 
     /**
@@ -32,4 +31,6 @@ class Plateform{
     setValue(newValue){
         this.value = newValue;
     }
+
+    
 }

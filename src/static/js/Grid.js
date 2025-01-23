@@ -2,15 +2,15 @@ class Grid {
     /**
      * Permet de créer un nouvel élément de type grid
      */
-    constructor(){
-        this.nbLine = 15;
-        this.nbCol = 9;
-        this.grid = [
-            [
+    constructor(width,height){
+        this.width = width;
+        this.height = height;
+        this.jumpMax = 30;
+        this.grid = [];
 
-            ]
-        ];
-        console.log(this.grid);
+        // hauteur plateform : 15, longueur 57
+        this.grid.push(new StandardPlateform((width/2 - 57/2),height - 15 ))
+        this.InitGrid()
     }
 
     /**
@@ -21,18 +21,16 @@ class Grid {
 
     /**
      * Retourne le nombre de ligne de mon tableau
-     * @returns this.nbLine 
+     * @returns this.width 
      */
-    GetNbLine(){
-        return this.nbLine
-    }
+    get Width() { return this.width }
 
     /**
      * Retourne le nombre de colonne de mon tableau
-     * @returns this.nbline
+     * @returns this.width
      */
-    GetNbCol(){
-        return this.nbCol
+    Getheight(){
+        return this.height
     }
 
     /**
@@ -54,19 +52,9 @@ class Grid {
      * Permet de remplir la grille de façon aléatoire au démarrage du jeux. Au départ, nous mettons uniquement des plateform verte
      */
     InitGrid(){
-        for(let i = 0; i < this.nbLine -1; i++){
-            for(let j = 0; j < this.nbCol; j++){
-                let random = Math.floor(Math.random() * 2) // Correspond à si nous créons une nouvelle plateform ou non
-                let xCord = Math.floor(Math.random() * this.nbLine)
-                let yCord = Math.floor(Math.random() * this.nbCol)
-                if(random == 1){
-                    console.log(this.grid);
-                    this.grid.push(new StandardPlateform(xCord,yCord)); 
-                    // this.grid = new StandardPlateform(xCord,yCord); 
-                    // let test = new StandardPlateform(xCord,yCord);
-                    //this.grid.x.j = new StandardPlateform(xCord,yCord);
-                }
-            }
+        for(let yCord = 40; yCord < this.height; yCord += 40){
+            let xCord = Math.floor(Math.random()* (this.width) - 57)  // Récupère une valeur entre 0 et le nombre maximum de pixel du canvas
+            this.grid.push(new StandardPlateform(xCord, yCord))
         }
     }
 
@@ -81,7 +69,7 @@ class Grid {
     }
 
     /**
-     * Retire la ligne d'indice nbLines
+     * Retire la ligne d'indice widths
      */
     RemoveFirstLine(){
         this.grid.pop()
@@ -95,9 +83,10 @@ class Grid {
         this.grid.unshift(ligne)
     }
 
+    /**
+     * ==================================================
+     *               Méthode de Class
+     * ==================================================
+     */
+
 }
-
-let grid = new Grid()
-grid.InitGrid()
-
-console.log(grid)
