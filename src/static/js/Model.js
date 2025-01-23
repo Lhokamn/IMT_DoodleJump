@@ -12,8 +12,6 @@ class Model {
         this.direction = 0;
         this.gravitySpeed = 0;
         this.doodle = new Doodle()
-
-        console.log(this.grid)
     }
 
     /**
@@ -33,14 +31,15 @@ class Model {
 
     Move(fps) {
         this.gravitySpeed += Model.GRAVITY;
-        this.doodle.Position = {x:this.gravitySpeed / fps, y:this.direction * Model.SPEED / fps}
+        this.doodle.Position.x += this.direction * Model.SPEED / fps,
+        this.doodle.Position.y += this.gravitySpeed / fps
 
 
         if (this.doodle.Position.y > 100) {
             this._Jump();
         }
 
-        this.b_Display(this.position);
+        this.b_Display(this.doodle.Position);
     }
 
     _Jump() {
@@ -58,12 +57,8 @@ class Model {
         this.b_Display = callback;
     }
 
-    BindDoodlePoint(callback){
+/*     BindDoodlePoint(callback){
         this
-    }
+    } */
 
 }
-
-let model = new Model()
-
-console.log(model)
