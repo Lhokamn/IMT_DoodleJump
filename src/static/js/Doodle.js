@@ -3,9 +3,9 @@ class Doodle {
     /**
      * Permet de créer un nouveau joueur
      */
-    constructor(){
+    constructor(xCord,yCord){
         this.points = 0             // Correspond au point du Doodle
-        this.position = {x:0, y:0}  // Correspond à la position du doodle
+        this.position = {x:xCord, y:yCord}  // Correspond à la position du doodle
         this.isAlive = 0            // Correspond à l'état du 
     }
 
@@ -26,4 +26,25 @@ class Doodle {
      */
     get IsAlive() { return this.isAlive }
     set IsAlive(isAlive) { this.isAlive = isAlive }
+
+    /**
+     * ==================================================
+     *              Méthode du Doodle
+     * ==================================================
+     */
+
+
+    /**
+     * Positionne le doodle de l'autre coté de la grid
+     * @param {*} xMin 
+     * @param {*} xMax 
+     */
+    IsOnBorder(xMin, xMax){
+        if (this.position.x < xMin){
+            this.position.x = xMax - 35
+        }
+        else if (this.position.x > xMax) {
+            this.position.x = xMin 
+        }
+    }
 }
