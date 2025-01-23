@@ -13,8 +13,8 @@ class Controller {
         this._view.BindGetTiles(this.GetTiles.bind(this));
     }
 
-    GetTiles(tiles) {
-        return this._model.tiles;
+    GetTiles(_model) {
+        return this._model.grid;
     }
 
     Display(position) {
