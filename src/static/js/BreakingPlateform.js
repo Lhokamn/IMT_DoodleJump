@@ -1,5 +1,3 @@
-const Plateform = require('./Plateform')
-
 class BreakingPlateform extends Plateform {
 
     /**
@@ -9,7 +7,7 @@ class BreakingPlateform extends Plateform {
      * @param {int} yCord Correpond à la coordonénes y de la grille
      */
     constructor(xCord,yCord){
-        super(1,xCord,yCord)
+        super(2,xCord,yCord)
         this.nbHit = 1
     }
 

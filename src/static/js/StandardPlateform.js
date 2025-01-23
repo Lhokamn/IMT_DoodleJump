@@ -1,5 +1,3 @@
-const Plateform = require('./Plateform');
-
 class StandardPlateform extends Plateform {
 
     /**

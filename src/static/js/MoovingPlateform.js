@@ -1,6 +1,4 @@
-const Plateform = require('./Plateform')
-
-class BreakingPlateform extends Plateform {
+class MoovingPlateform extends Plateform {
 
     /**
      * Crée une plateform standard qui ne bougent pas, ne disparais pas et ne se brise pas
@@ -9,7 +7,7 @@ class BreakingPlateform extends Plateform {
      * @param {int} yCord Correpond à la coordonénes y de la grille
      */
     constructor(xCord,yCord){
-        super(2,xCord,yCord)
+        super(1,xCord,yCord)
     }
 
     /**
