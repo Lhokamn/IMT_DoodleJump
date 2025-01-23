@@ -21,4 +21,6 @@ class Plateform{
     get XCord() { return this.position.x }
     get YCord() { return this.position.y }
 
+    set YCord(yCord) {this.position.y = yCord}
+
 }

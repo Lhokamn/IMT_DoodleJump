@@ -10,19 +10,6 @@ class MoovingPlateform extends Plateform {
         super(1,xCord,yCord)
     }
 
-    /**
-     * Met à jour la coordonées X de la plateform
-     * @param {int} xCord 
-     */
-    SetXCord(xCord){
-        this.xCord = xCord
-    }
+    set XCordord(xCord) { this.position.x = xCord}
 
-    /**
-     * Met à jour la coordonées Y de la plateforme
-     * @param {int} yCord 
-     */
-    SetYCord(yCord){
-        this.yCord = yCord
-    }
 }
