@@ -2,7 +2,7 @@ class View {
     constructor(img_path) {
         
         this._canvas = document.getElementById('my_canvas');
-        this._canvas.style.backgroundImage = 'url(../url/bck@2x.png)';
+        this._canvas.style.backgroundImage = 'url(static/img/bck@2x.png)';
         this._canvas.style.backgroundSize = 'cover';
         this.ctx     = this._canvas.getContext('2d');
         
@@ -11,11 +11,11 @@ class View {
         
         /* Chargement des images */
         this.HEXTILES_IMAGE = new Image();
-        this.HEXTILES_IMAGE.src = '../img/game-tiles.png';
+        this.HEXTILES_IMAGE.src = 'static/img/game-tiles.png';
         this.DOODLE_LEFT = new Image();
-        this.DOODLE_LEFT.src = '../img/lik-left@2x.png';
+        this.DOODLE_LEFT.src = 'static/img/lik-left@2x.png';
         this.DOODLE_RIGHT = new Image();
-        this.DOODLE_RIGHT.src = '../img/lik-right@2x.png';
+        this.DOODLE_RIGHT.src = 'static/img/lik-right@2x.png';
 
         this.doodle = this.DOODLE_RIGHT;
 
