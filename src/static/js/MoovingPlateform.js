@@ -7,7 +7,10 @@ class MoovingPlateform extends Plateform {
      * @param {int} yCord Correpond à la coordonénes y de la grille
      */
     constructor(xCord,yCord){
-        super(1,xCord,yCord)
+        super(1,xCord,yCord);
+        this.SPEED      = 100;
+        this.direction = Math.random() < 0.5 ? -1 : 1;
+
     }
 
     /**
@@ -24,5 +27,26 @@ class MoovingPlateform extends Plateform {
      */
     SetYCord(yCord){
         this.yCord = yCord
+    }
+
+    Move(fps) {
+        this.position.x += this.direction * this.SPEED / fps;
+    }
+
+    /**
+     * Vérifie si la plateform est en collision avec les murs
+     */
+
+    checkCollision(){
+        if(this.position.x > 350 - 57){
+            this.direction = -1;
+        } else if(this.position.x < 0){
+            this.direction = 1;
+        }
+    }
+
+    Update(fps){
+        this.checkCollision();
+        this.Move(fps);
     }
 }

@@ -23,6 +23,7 @@ class Grid {
      * @returns this.width 
      */
     get Width() { return this.width }
+    GetWidth() { return this.width }
 
     /**
      * Retourne le nombre de colonne de mon tableau
@@ -52,6 +53,7 @@ class Grid {
      */
     _InitGrid(){
         // hauteur plateform : 15, longueur 57
+        this.grid.push(new MoovingPlateform((this.width/2 - 57/2),this.height - 50 ))
         this.grid.push(new StandardPlateform((this.width/2 - 57/2),this.height - 15 ))
 
         for(let yCord = 40; yCord < this.height; yCord += 40){
@@ -90,5 +92,17 @@ class Grid {
      *               Méthode de Class
      * ==================================================
      */
+
+    /**
+     * Update les plateformes de type 1&2*
+     */
+    Update(fps){
+        this.grid.forEach(element => {
+            switch(element.type){
+                case 1:
+                    element.Update(fps)
+            }
+        });
+    }
 
 }

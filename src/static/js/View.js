@@ -4,6 +4,11 @@ class View {
         this._canvas = document.getElementById('my_canvas');
         this._canvas.style.backgroundImage = 'url(static/img/bck@2x.png)';
         this._canvas.style.backgroundSize = 'cover';
+        this._canvas.style.borderRadius = '10px';
+        this._canvas.style.alignContent = 'center';
+        this._canvas.style.display = 'block';
+        this._canvas.style.margin = '0 auto';
+        
         this.ctx     = this._canvas.getContext('2d');
         
         this._hold_right = false;

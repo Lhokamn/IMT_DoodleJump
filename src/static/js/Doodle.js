@@ -26,4 +26,6 @@ class Doodle {
      */
     get IsAlive() { return this.isAlive }
     set IsAlive(isAlive) { this.isAlive = isAlive }
+
+    
 }
