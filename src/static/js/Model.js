@@ -22,8 +22,8 @@ class Model {
      * ==================================================
      */
 
-    get direction() { return this.direction }
-    set direction(direction) { return direction }
+    get Direction() { return this.direction }
+    set Direction(direction) { return direction }
 
     /**
      * ==================================================
@@ -32,19 +32,19 @@ class Model {
      */
 
     Move(fps) {
-        this._gravitySpeed += Model.GRAVITY;
-        this._position.y += this._gravitySpeed / fps;
-        this._position.x += this._direction * Model.SPEED / fps;
+        this.gravitySpeed += Model.GRAVITY;
+        this.doodle.Position = {x:this.gravitySpeed / fps, y:this.direction * Model.SPEED / fps}
 
-        if (this._position.y > 100) {
+
+        if (this.doodle.Position.y > 100) {
             this._Jump();
         }
 
-        this.b_Display(this._position);
+        this.b_Display(this.position);
     }
 
     _Jump() {
-        this._gravitySpeed = -Model.JUMP_FORCE;
+        this.gravitySpeed = -Model.JUMP_FORCE;
     }
 
 
