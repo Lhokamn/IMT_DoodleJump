@@ -52,15 +52,15 @@ class Doodle {
 
     /**
      * Positionne le doodle de l'autre coté de la grid
-     * @param {*} xMin 
-     * @param {*} xMax 
+     * @param {*} xMin coordonnées minimal du canvas
+     * @param {*} xMax Coordonnées maximal du canvas
      */
     IsOnBorder(xMin, xMax){
-        if (this._position.x < xMin){
-            this._position.x = xMax - 35
+        if (this._position.x < xMin - Model.DOODLEWIDTH/2){
+            this._position.x = xMax + Model.DOODLEWIDTH/2
         }
-        else if (this._position.x > xMax) {
-            this._position.x = xMin 
+        else if (this._position.x >= xMax + Model.DOODLEWIDTH/2 ) {
+            this._position.x = xMin - Model.DOODLEWIDTH/2
         }
     }
 }
