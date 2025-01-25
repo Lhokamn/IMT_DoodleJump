@@ -2,6 +2,7 @@ class View {
     constructor(img_path) {
         
         this._canvas = document.getElementById('my_canvas');
+        this._scoreElement = document.getElementById('score');
         
         this.ctx = this._canvas.getContext('2d');
 
@@ -113,9 +114,12 @@ class View {
         this.ctx.drawImage(this.doodle,0,0,140,120,position.x, position.y, DOODLEWIDTH, DOODLEWIDTH);
     }
 
+    // Met à jour le score dans l'interface utilisateur
+    UpdateScore(newScore) {
+        this._scoreElement.textContent = `Score: ${newScore}`;
+    }
+
     BindGetTiles(callback){
-
         this.GetTiles = callback
-
-        }
+    }
 }
