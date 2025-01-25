@@ -2,35 +2,42 @@ class View {
     constructor(img_path) {
         
         this._canvas = document.getElementById('my_canvas');
+        
+        this.ctx = this._canvas.getContext('2d');
+
+        this.HEXTILES_IMAGE = new Image();
+        this.DOODLE_LEFT = new Image();
+        this.DOODLE_RIGHT = new Image();
+
+        /* Les coordonnées des images dans le fichier game-tiles.png */
+        this.green_slab = {x: 1, y: 1, w: PLATEFORMWIDTH, h: PLATEFORMHEIGHT};
+        this.blue_slab = {x: 1, y: 19, w: PLATEFORMWIDTH, h: PLATEFORMHEIGHT};
+        this.white_slab = {x: 1, y: 55, w: PLATEFORMWIDTH, h: PLATEFORMHEIGHT};
+        this.white_brock_slab = {x: 1, y: 73, w: PLATEFORMWIDTH, h: PLATEFORMHEIGHT};
+
+        this._InitView()
+        this.Events();
+    }
+
+    _InitView(){
         this._canvas.style.backgroundImage = 'url(static/img/bck@2x.png)';
         this._canvas.style.backgroundSize = 'cover';
         this._canvas.style.borderRadius = '10px';
         this._canvas.style.alignContent = 'center';
         this._canvas.style.display = 'block';
         this._canvas.style.margin = '0 auto';
-        
-        this.ctx     = this._canvas.getContext('2d');
-        
+
         this._hold_right = false;
         this._hold_left = false;
-        
-        /* Chargement des images */
-        this.HEXTILES_IMAGE = new Image();
+
         this.HEXTILES_IMAGE.src = 'static/img/game-tiles.png';
-        this.DOODLE_LEFT = new Image();
         this.DOODLE_LEFT.src = 'static/img/lik-left@2x.png';
-        this.DOODLE_RIGHT = new Image();
         this.DOODLE_RIGHT.src = 'static/img/lik-right@2x.png';
 
         this.doodle = this.DOODLE_RIGHT;
 
-        /* Les coordonnées des images dans le fichier game-tiles.png */
-        this.green_slab = {x: 1, y: 1, w: 57, h: 15};
-        this.blue_slab = {x: 1, y: 19, w: 57, h: 15};
-        this.white_slab = {x: 1, y: 55, w: 57, h: 15};
-        this.white_brock_slab = {x: 1, y: 73, w: 57, h: 15};
-
-        this.Events();
+        
+        
     }
 
     BindSetDirection(callback) {
@@ -75,7 +82,7 @@ class View {
 
     Display(position) {
 
-        this.ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
+        this.ctx.clearRect(0, 0, CANVASWIDTH, CANVASHEIGHT);
 
         // Dessiner les tuiles.
         this.GetTiles().Grid.Grid.forEach(element => {
@@ -103,7 +110,7 @@ class View {
         });
 
         // Dessiner doodle.
-        this.ctx.drawImage(this.doodle,0,0,140,120,position.x, position.y, 140/2.5, 120/2.5);
+        this.ctx.drawImage(this.doodle,0,0,140,120,position.x, position.y, DOODLEWIDTH/2.5, DOODLEWIDTH/2.5);
     }
 
     BindGetTiles(callback){

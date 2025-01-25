@@ -7,16 +7,10 @@ class Model {
     static JUMP_FORCE = 500;
     static SPEED      = 200;
 
-    static CANVASWIDTH = document.getElementById('my_canvas').offsetWidth
-    static CANVASHEIGHT = document.getElementById('my_canvas').offsetHeight 
-
-    static DOODLEWIDTH = 140/2.5
-    static DOODLEHEIGHT = 120/2.5
-
     constructor(){
-        this._grid = new Grid(Model.CANVASWIDTH, Model.CANVASHEIGHT );
+        this._grid = new Grid(CANVASWIDTH, CANVASHEIGHT );
         this._gravitySpeed = 0;
-        this._doodle = new Doodle((Model.CANVASWIDTH/2) - (Model.DOODLEWIDTH/2), Model.CANVASHEIGHT - 30, 0)
+        this._doodle = new Doodle((CANVASWIDTH/2) - (DOODLEWIDTH/2), CANVASHEIGHT - 30, 0)
     }
 
     /**
@@ -54,7 +48,7 @@ class Model {
         this._grid.Update(fps);
 
 
-        this._doodle.IsOnBorder(0,Model.CANVASWIDTH)
+        this._doodle.IsOnBorder(0,CANVASWIDTH)
     }
 
     _Jump() {

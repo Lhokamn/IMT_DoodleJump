@@ -1,7 +1,4 @@
 class Grid {
-    
-    static TILESWIDTH = 57
-    static TILESHEIGHT = 15
 
     /**
      * Permet de créer un nouvel élément de type grid
@@ -56,9 +53,10 @@ class Grid {
      */
     _InitGrid(){
          // hauteur plateform : 15, longueur 57
-        this._grid.push(new StandardPlateform((this._width/2 - Grid.TILESWIDTH/2),this._height - Grid.TILESHEIGHT ))
-        for(let yCord = (this._height - Grid.TILESHEIGHT -40); yCord > 0; yCord -= 40){
-            let xCord = Math.floor(Math.random()* (((this._width) - Grid.TILESWIDTH) - Grid.TILESWIDTH)+ Grid.TILESWIDTH)  // Récupère une valeur entre 0 et le nombre maximum de pixel du canvas
+        this._grid.push(new StandardPlateform((this._width/2 - PLATEFORMWIDTH/2),this._height - PLATEFORMHEIGHT ))
+        for(let yCord = (this._height - PLATEFORMHEIGHT -40); yCord > 0; yCord -= 40){
+            let xCord = Math.floor(Math.random()* (((this._width) - PLATEFORMWIDTH) - PLATEFORMWIDTH)+ PLATEFORMWIDTH) 
+            console.log(xCord) // Récupère une valeur entre 0 et le nombre maximum de pixel du canvas
             this._grid.push(new StandardPlateform(xCord, yCord))
         } 
     }
@@ -78,7 +76,7 @@ class Grid {
      * @returns higher la plateform la plus haute du canvas
      */
     _GetHigherPlateform(){
-        let higher = Model.CANVASHEIGHT
+        let higher = CANVASHEIGHT
 
         this._grid.forEach(element =>{
             if (element.yCord < higher) {
@@ -132,7 +130,6 @@ class Grid {
             this._AddNewPlateform(100,0,0)
 
         }
-
         else if(doodlePoints < 1024 && this._GetHigherPlateform() > 40) {
              this._AddNewPlateform(70,15,15)
         }
