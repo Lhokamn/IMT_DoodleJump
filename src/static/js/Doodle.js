@@ -3,10 +3,11 @@ class Doodle {
     /**
      * Permet de créer un nouveau joueur
      */
-    constructor(xCord,yCord){
-        this._points = 0             // Correspond au point du Doodle
-        this._position = {x:xCord, y:yCord}  // Correspond à la position du doodle
-        this._isAlive = 0            // Correspond à l'état du 
+    constructor(xCord,yCord, direction){
+        this._points = 0                        // Correspond au point du Doodle
+        this._position = {x:xCord, y:yCord}     // Correspond à la position du doodle
+        this._direction = direction             // Correspond à la direction du Doodle (gauche et droite)
+        this._isAlive = 0                       // Correspond à l'état du 
     }
 
     /**
@@ -31,7 +32,13 @@ class Doodle {
     set YCord(yCord) { this._position.y = yCord }
 
     /**
-     * Getter et Setter de l'attribut position
+     * Getter et setters pour la direction
+     */
+    get Direction() { return this._direction }
+    set Direction(direction) { this._direction = direction}
+
+    /**
+     * Getter et Setter de l'attribut isAlive
      */
     get IsAlive() { return this._isAlive }
     set IsAlive(isAlive) { this._isAlive = isAlive }

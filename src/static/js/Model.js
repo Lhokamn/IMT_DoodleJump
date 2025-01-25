@@ -15,9 +15,8 @@ class Model {
 
     constructor(){
         this._grid = new Grid(Model.CANVASWIDTH, Model.CANVASHEIGHT );
-        this._direction = 0;
         this._gravitySpeed = 0;
-        this._doodle = new Doodle((Model.CANVASWIDTH/2) - (Model.DOODLEWIDTH/2), Model.CANVASHEIGHT - 30)
+        this._doodle = new Doodle((Model.CANVASWIDTH/2) - (Model.DOODLEWIDTH/2), Model.CANVASHEIGHT - 30, 0)
     }
 
     /**
@@ -28,8 +27,8 @@ class Model {
 
     get Grid() { return this._grid }
 
-    get Direction() { return this._direction }
-    set Direction(direction) { direction = direction }
+
+    get Doodle() { return this._doodle }
 
     /**
      * ==================================================
@@ -39,7 +38,7 @@ class Model {
 
     Move(fps) {
         this._gravitySpeed += Model.GRAVITY;
-        this._doodle.XCord += this._direction * Model.SPEED / fps,
+        this._doodle.XCord += this._doodle.Direction * Model.SPEED / fps,
         this._doodle.YCord += this._gravitySpeed / fps;
 
 

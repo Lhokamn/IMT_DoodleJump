@@ -22,7 +22,7 @@ class Controller {
     }
 
     SetDirection(newDirection) {
-        this._model.direction = newDirection;
+        this._model.Doodle.Direction = newDirection
     }
     
     Update() {
