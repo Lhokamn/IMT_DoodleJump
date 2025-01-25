@@ -3,24 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="static/css/index.css">
 </head>
 <body style="background-color: blanchedalmond;">
     <h1 style="text-align: center;">Doodle Jump Game</h1>
     <div id="content">
-      <div id="author">
-        <h2>Auteur de cette version de Doodle</h2>
-        <ul>
-          <li>Aksel Caubel</li>
-          <li>Corentin Claudel</li>
-        </ul>
+      <div id="content-info">
+        <div id="content-info-author">
+          <h2>Auteur de cette version de Doodle</h2>
+          <ul>
+            <li>Aksel Caubel</li>
+            <li>Corentin Claudel</li>
+          </ul>
+        </div>
+        <div id="content-info-score">
+          <p>Score: 0</p>
+        </div>
       </div>
-      <div id="score">
-        <p>Score: 0</p>
+      <div id="content-game-canvas">
+        <canvas id="my_canvas" width="350" height="500" style="border: 1px solid red"></canvas>
       </div>
     </div>
-    <div id="game-canvas">
-      <canvas id="my_canvas" width="350" height="500" style="border: 1px solid red"></canvas>
-    </div>
+    
 </body>
 </html>
 

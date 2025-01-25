@@ -1,0 +1,50 @@
+/* index.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: blanchedalmond;
+}
+  
+h1 {
+    text-align: center;
+    margin: 20px 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+  
+#content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 80px; /* Place la zone sous le titre */
+    width: 100%;
+    height: calc(100vh - 100px); /* Hauteur totale moins l'espace pour le titre */
+    box-sizing: border-box;
+}
+  
+#content-info {
+    width: 25%; /* Occupe un quart de la largeur */
+    padding: 20px;
+    box-sizing: border-box;
+}
+  
+#content-info-author, #content-info-score {
+    margin-bottom: 20px;
+}
+  
+#content-game-canvas {
+    width: 75%; /* Occupe les trois quarts de la largeur */
+    display: flex;
+    justify-content: left;
+    align-items: left;
+}
+  
+canvas {
+    border: 1px solid red;
+}
+  
