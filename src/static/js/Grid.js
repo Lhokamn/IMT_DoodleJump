@@ -56,7 +56,6 @@ class Grid {
         this._grid.push(new StandardPlateform((this._width/2 - PLATEFORMWIDTH/2),this._height - PLATEFORMHEIGHT ))
         for(let yCord = (this._height - PLATEFORMHEIGHT -40); yCord > 0; yCord -= 40){
             let xCord = Math.floor(Math.random()* (((this._width) - PLATEFORMWIDTH) - PLATEFORMWIDTH)+ PLATEFORMWIDTH) 
-            console.log(xCord) // Récupère une valeur entre 0 et le nombre maximum de pixel du canvas
             this._grid.push(new StandardPlateform(xCord, yCord))
         } 
     }

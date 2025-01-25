@@ -110,7 +110,7 @@ class View {
         });
 
         // Dessiner doodle.
-        this.ctx.drawImage(this.doodle,0,0,140,120,position.x, position.y, DOODLEWIDTH/2.5, DOODLEWIDTH/2.5);
+        this.ctx.drawImage(this.doodle,0,0,140,120,position.x, position.y, DOODLEWIDTH, DOODLEWIDTH);
     }
 
     BindGetTiles(callback){

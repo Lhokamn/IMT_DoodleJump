@@ -56,11 +56,11 @@ class Doodle {
      * @param {*} xMax Coordonnées maximal du canvas
      */
     IsOnBorder(xMin, xMax){
-        if (this._position.x < xMin - DOODLEWIDTH/2){
-            this._position.x = xMax + DOODLEWIDTH/2
+        if (this._position.x < xMin - DOODLEWIDTH/4){
+            this._position.x = xMax + DOODLEWIDTH/4
         }
-        else if (this._position.x >= xMax + DOODLEWIDTH/2 ) {
-            this._position.x = xMin - DOODLEWIDTH/2
+        else if (this._position.x >= xMax + DOODLEWIDTH/4 ) {
+            this._position.x = xMin - DOODLEWIDTH/4
         }
     }
 }
