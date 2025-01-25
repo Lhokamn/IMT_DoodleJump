@@ -53,6 +53,12 @@ class Grid {
     _InitGrid(){
          // hauteur plateform : 15, longueur 57
         this.grid.push(new StandardPlateform((this.width/2 - Grid.TILESWIDTH/2),this.height - Grid.TILESHEIGHT ))
+        this.grid.push(new MoovingPlateform(50,50))
+        this.grid.push(new BreakingPlateform(150,150))
+        this.grid.push(new BreakingPlateform(50,50))
+        this.grid[2].SetStateToOne()
+        this.grid[3].SetStateToOne()
+        // this.grid.push(new BreakingPlateform(50,50))
         console.log((this.height - Grid.TILESHEIGHT*2))
         for(let yCord = (this.height - Grid.TILESHEIGHT -40); yCord > 0; yCord -= 40){
             let xCord = Math.floor(Math.random()* (((this.width) - Grid.TILESWIDTH) - Grid.TILESWIDTH)+ Grid.TILESWIDTH)  // Récupère une valeur entre 0 et le nombre maximum de pixel du canvas
@@ -97,7 +103,17 @@ class Grid {
         this.grid.forEach(element => {
             switch(element.type){
                 case 1:
-                    element.Update(fps)
+                    element.Update(fps);
+                    break;
+                case 2:
+                    element.Update(fps,this.Height);
+                    if (element.toDestroy){
+                        //console.log(this.grid.indexOf(element));
+                        this.grid = this.grid.filter(item => item !== element);
+                        console.log(this.grid);
+                        break;
+                    }
+
             }
         });
     }

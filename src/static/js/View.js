@@ -101,7 +101,6 @@ class View {
                     tile = this.white_slab;
                     break;
             };
-
             this.ctx.drawImage(this.HEXTILES_IMAGE,tile.x,tile.y,tile.w,tile.h,element.XCord,element.YCord,tile.w,tile.h);
         });
 
