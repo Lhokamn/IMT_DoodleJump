@@ -14,7 +14,7 @@ class Controller {
     }
 
     GetTiles(_model) {
-        return this._model.grid;
+        return this._model;
     }
 
     Display(position) {

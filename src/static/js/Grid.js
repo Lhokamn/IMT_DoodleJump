@@ -40,6 +40,10 @@ class Grid {
      */
     get Grid() {return this._grid}
 
+    /**
+     * 
+     */
+    get Jump() { return this._jumpMax }
 
     /**
      * ==================================================
@@ -52,8 +56,7 @@ class Grid {
      */
     _InitGrid(){
          // hauteur plateform : 15, longueur 57
-        this._grid.push(new StandardPlateform((this._width/2 - Grid.TILESWIDTH/2),this.height - Grid.TILESHEIGHT ))
-        console.log((this._height - Grid.TILESHEIGHT*2))
+        this._grid.push(new StandardPlateform((this._width/2 - Grid.TILESWIDTH/2),this._height - Grid.TILESHEIGHT ))
         for(let yCord = (this._height - Grid.TILESHEIGHT -40); yCord > 0; yCord -= 40){
             let xCord = Math.floor(Math.random()* (((this._width) - Grid.TILESWIDTH) - Grid.TILESWIDTH)+ Grid.TILESWIDTH)  // Récupère une valeur entre 0 et le nombre maximum de pixel du canvas
             this._grid.push(new StandardPlateform(xCord, yCord))
@@ -117,33 +120,28 @@ class Grid {
      * @param {int} doodlePoints 
      */
     UpdateGridPlateform(doodlePoints){
-        this.grid.forEach(element=>{
+        this._grid.forEach(element=>{
             element.yCord += doodlePoints
-            if(element.yCord >= this.width){
+            if(element.yCord >= this._width){
                 let index = this.grid.indexOf(element)
                 this._grid.splice(index,1)
             } 
         })
-        if(this.doodlePoints < 512 && this._GetHigherPlateform() > 40){
+        if(doodlePoints < 512 && this._GetHigherPlateform() > 40){
             // Correspond à un niveau facile
             this._AddNewPlateform(100,0,0)
 
         }
 
-        else if(this.doodlePoints < 1024){
-            if (this._GetHigherPlateform() > 40){
-                this._AddNewPlateform(70,15,15)
-            }
+        else if(doodlePoints < 1024 && this._GetHigherPlateform() > 40) {
+             this._AddNewPlateform(70,15,15)
         }
-        else if(this.doodlePoints < 1300){
-            if(this._GetHigherPlateform() > 60){
-                this._AddNewPlateform(20,40,40)
-            }
+        else if(this.doodlePoints < 1300 && this._GetHigherPlateform() > 60){
+            this._AddNewPlateform(20,40,40)
+
         }
-        else if(this.doodlePoints < 2000){
-            if(this._GetHigherPlateform() > 80){
-                this._AddNewPlateform(2,49,49)
-            }
+        else if(this.doodlePoints < 2000 && this._GetHigherPlateform() > 80){
+            this._AddNewPlateform(2,49,49)
         }
         else {
             if(this._GetHigherPlateform() > 80){

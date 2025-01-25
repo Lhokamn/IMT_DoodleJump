@@ -26,6 +26,8 @@ class Model {
      * ==================================================
      */
 
+    get Grid() { return this._grid }
+
     get Direction() { return this._direction }
     set Direction(direction) { direction = direction }
 
@@ -37,15 +39,15 @@ class Model {
 
     Move(fps) {
         this._gravitySpeed += Model.GRAVITY;
-        this._doodle.Position.x += this._direction * Model.SPEED / fps,
-        this._doodle.Position.y += this._gravitySpeed / fps;
+        this._doodle.XCord += this._direction * Model.SPEED / fps,
+        this._doodle.YCord += this._gravitySpeed / fps;
 
 
-        if (this._doodle.Position.y > 440) {
+        if (this._doodle.YCord > 440) {
             this._Jump();
         }
 
-        this.b_Display(this.doodle.Position);
+        this.b_Display(this._doodle.Position);
 
         /**
          * Update les plateformes
@@ -57,7 +59,7 @@ class Model {
     }
 
     _Jump() {
-        this.gravitySpeed = -Model.JUMP_FORCE;
+        this._gravitySpeed = -Model.JUMP_FORCE;
     }
 
 

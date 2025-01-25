@@ -74,18 +74,15 @@ class View {
     }
 
     Display(position) {
-        let x = position.x;
-        let y = position.y;
-        
+
         this.ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
-        
+
         // Dessiner les tuiles.
-        this.tile_grid = this.GetTiles();
-        this.tile_grid.grid.forEach(element => {
+        this.GetTiles().Grid.Grid.forEach(element => {
 
             // Recupere la tuile correspondante.
             let tile;
-            switch (element.type){
+            switch (element.Type){
                 case 0:
                     tile = this.green_slab;
                     break;
@@ -93,7 +90,7 @@ class View {
                     tile = this.blue_slab;
                     break;
                 case 2:
-                    if (element.state == 1){
+                    if (element.State == 1){
                         tile = this.white_slab;
                     } else {
                         tile = this.white_brock_slab;
@@ -106,7 +103,7 @@ class View {
         });
 
         // Dessiner doodle.
-        this.ctx.drawImage(this.doodle,0,0,140,120,x, y, 140/2.5, 120/2.5);
+        this.ctx.drawImage(this.doodle,0,0,140,120,position.x, position.y, 140/2.5, 120/2.5);
     }
 
     BindGetTiles(callback){
