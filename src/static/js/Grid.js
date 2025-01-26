@@ -97,7 +97,7 @@ class Grid {
         if (probaS + probaB + probaM !== 100) {
             throw new Error("La somme des probabilités doit être égale à 100.");
         }
-        let xCord = Math.floor(Math.random()* (((this.width) - Grid.TILESWIDTH) - Grid.TILESWIDTH)+ Grid.TILESWIDTH)  // Récupère une valeur entre 0 et le nombre maximum de pixel du canvas
+        let xCord = Math.floor(Math.random()* (((this._width) - PLATEFORMWIDTH) - PLATEFORMWIDTH)+ PLATEFORMWIDTH)  // Récupère une valeur entre 0 et le nombre maximum de pixel du canvas
         
         // Génération d'un nombre aléatoire pour choisir le type
         let randomValue = Math.random() * 100;
