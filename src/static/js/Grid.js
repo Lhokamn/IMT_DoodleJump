@@ -77,11 +77,14 @@ class Grid {
     _GetHigherPlateform(){
         let higher = CANVASHEIGHT
 
+        console.log(this._grid)
+
         this._grid.forEach(element =>{
             if (element.yCord < higher) {
                 higher = element.yCord
             }
         })
+        console.log(higher)
         return higher
     }
 
@@ -116,14 +119,15 @@ class Grid {
      * Gestion de la mise à jour des plateform sur la grille
      * @param {int} doodlePoints 
      */
-    UpdateGridPlateform(doodlePoints){
+    UpdateGridPlateform(doodlePoints,canvasUp){
         this._grid.forEach(element=>{
-            element.yCord += doodlePoints
-            if(element.yCord >= this._width){
+            element.YCord -= canvasUp
+            if(element.yCord >= this._height){
                 let index = this.grid.indexOf(element)
                 this._grid.splice(index,1)
             } 
         })
+        console.log("higher",this._GetHigherPlateform())
         if(doodlePoints < 512 && this._GetHigherPlateform() > 40){
             // Correspond à un niveau facile
             this._AddNewPlateform(100,0,0)

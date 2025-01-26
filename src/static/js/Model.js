@@ -35,6 +35,7 @@ class Model {
         this._doodle.XCord += this._doodle.Direction * Model.SPEED / fps,
         this._doodle.YCord += this._gravitySpeed / fps;
         this.CheckCollision(fps);
+        this.CheckDoodleUp(fps)
 
 
         if (this._doodle.YCord > CANVASHEIGHT) {
@@ -59,7 +60,6 @@ class Model {
 
     CheckCollision(fps){
         if(this._gravitySpeed > 0){
-            console.log('fall', this._gravitySpeed)
             this._grid.Grid.forEach(plateform => {
                 /**
                  * Si doodle au dessus ou sur la plateform & prochaine frame inférieur à la plateform
@@ -98,17 +98,31 @@ class Model {
                         }
 
                     }
-                    
-
-
-                /**
-                 * Si debut du doodle est dans la range platform
-                 */
 
             }
             });
         }
     }
+
+    /**
+     * Test si le Doodle est à plus de 60% du canvas. 
+     * Si c'est le cas,     
+     *      on rajoute la distance parcourus à ces points et on ajoute cette distance parcouru à la position y des plateformes
+     */
+    CheckDoodleUp(fps){
+        console.log("AAA")
+        if (this._doodle.YCord <= CANVASHEIGHT * 0.4){
+            while (this._gravitySpeed < 0){
+                console.log(this._doodle.Points)
+                let canvasUp = this._gravitySpeed / fps
+                console.log(canvasUp)
+                this._doodle.Points += canvasUp;
+                this._grid.UpdateGridPlateform(this._doodle.Points,canvasUp)
+                this._gravitySpeed += Model.GRAVITY 
+            }
+        }
+    } 
+
     /**
      * ==================================================
      *              Méthode de callback
