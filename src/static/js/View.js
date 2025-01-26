@@ -34,10 +34,9 @@ class View {
         this.HEXTILES_IMAGE.src = 'static/img/game-tiles.png';
         this.DOODLE_LEFT.src = 'static/img/lik-left@2x.png';
         this.DOODLE_RIGHT.src = 'static/img/lik-right@2x.png';
-
-        this.doodle = this.DOODLE_RIGHT;
-
         
+        this.doodle = this.DOODLE_RIGHT;
+        this.doodle_last_direction = 1; // RIGHT  
         
     }
 
@@ -110,7 +109,7 @@ class View {
         });
 
         // Dessiner doodle.
-        this.ctx.drawImage(this.doodle,0,0,140,120,position.x, position.y, DOODLEWIDTH, DOODLEWIDTH);
+        this.ctx.drawImage(this.doodle,0,0,DOODLEWIDTH*RESIZE,DOODLEHEIGHT*RESIZE,position.x, position.y, DOODLEWIDTH, DOODLEHEIGHT);
     }
 
     // Met à jour le score dans l'interface utilisateur
