@@ -9,12 +9,12 @@ class MoovingPlateform extends Plateform {
     constructor(xCord,yCord){
         super(1,xCord,yCord);
         this.SPEED      = 100;
-        this.direction = Math.random() < 0.5 ? -1 : 1;
+        this._direction = Math.random() < 0.5 ? -1 : 1;
 
     }
 
     Move(fps) {
-        this.position.x += this.direction * this.SPEED / fps;
+        this._position.x += this._direction * this.SPEED / fps;
     }
 
     /**
@@ -22,10 +22,10 @@ class MoovingPlateform extends Plateform {
      */
 
     checkCollision(){
-        if(this.position.x > 350 - 57){
-            this.direction = -1;
-        } else if(this.position.x < 0){
-            this.direction = 1;
+        if(this._position.x > 350 - 57){
+            this._direction = -1;
+        } else if(this._position.x < 0){
+            this._direction = 1;
         }
     }
 

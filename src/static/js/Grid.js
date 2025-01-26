@@ -76,12 +76,9 @@ class Grid {
      */
     _GetHigherPlateform(){
         let higher = CANVASHEIGHT
-
-        console.log(this._grid)
-
         this._grid.forEach(element =>{
-            if (element.yCord < higher) {
-                higher = element.yCord
+            if (element.YCord < higher) {
+                higher = element.YCord
             }
         })
         console.log(higher)
@@ -111,7 +108,7 @@ class Grid {
             this._grid.push(new BreakingPlateform(xCord,0))
         }
         else{
-            this._grid.push(new MouvementPlateform(xCord,0))
+            this._grid.push(new MoovingPlateform(xCord,0))
         }
     }
 
@@ -127,24 +124,24 @@ class Grid {
                 this._grid.splice(index,1)
             } 
         })
-        console.log("higher",this._GetHigherPlateform())
-        if(doodlePoints < 512 && this._GetHigherPlateform() > 40){
+        let higher = this._GetHigherPlateform()
+        if(doodlePoints < 512 && higher > 40){
             // Correspond à un niveau facile
             this._AddNewPlateform(100,0,0)
 
         }
-        else if(doodlePoints < 1024 && this._GetHigherPlateform() > 40) {
+        else if(doodlePoints < 1024 && higher > 40) {
              this._AddNewPlateform(70,15,15)
         }
-        else if(this.doodlePoints < 1300 && this._GetHigherPlateform() > 60){
+        else if(this.doodlePoints < 1300 && higher > 60){
             this._AddNewPlateform(20,40,40)
 
         }
-        else if(this.doodlePoints < 2000 && this._GetHigherPlateform() > 80){
+        else if(this.doodlePoints < 2000 && higher > 80){
             this._AddNewPlateform(2,49,49)
         }
         else {
-            if(this._GetHigherPlateform() > 80){
+            if( higher > 80){
                 this._AddNewPlateform(0,100,0)
             }
         } 
@@ -161,7 +158,7 @@ class Grid {
      */
     Update(fps){
         this._grid.forEach(element => {
-            switch(element.type){
+            switch(element.Type){
                 case 1:
                     element.Update(fps);
                     break;

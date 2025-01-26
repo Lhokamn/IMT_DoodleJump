@@ -95,6 +95,9 @@ class Model {
                         
                         if ((endDoddle.y + (this._gravitySpeed / fps)) >= plateform.YCord){
                             this._Jump();
+                            if (plateform._type == 2){
+                                plateform.SetStateToOne();
+                            }
                         }
 
                     }
@@ -110,17 +113,17 @@ class Model {
      *      on rajoute la distance parcourus à ces points et on ajoute cette distance parcouru à la position y des plateformes
      */
     CheckDoodleUp(fps){
-        console.log("AAA")
-        if (this._doodle.YCord <= CANVASHEIGHT * 0.4){
+        if (this._doodle.YCord <= CANVASHEIGHT * 0.4 ){
             while (this._gravitySpeed < 0){
                 console.log(this._doodle.Points)
                 let canvasUp = this._gravitySpeed / fps
                 console.log(canvasUp)
-                this._doodle.Points += canvasUp;
+                this._doodle.Points -= canvasUp;
                 this._grid.UpdateGridPlateform(this._doodle.Points,canvasUp)
                 this._gravitySpeed += Model.GRAVITY 
             }
         }
+        console.log("Score :",this._doodle.Points)
     } 
 
     /**

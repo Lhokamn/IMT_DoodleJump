@@ -13,6 +13,8 @@ class BreakingPlateform extends Plateform {
     constructor(xCord,yCord){
         super(2,xCord,yCord)
         this._state = 0
+        this._gravitySpeed = 0;
+        this._toDestroy = false;
     }
 
     /**
@@ -29,12 +31,12 @@ class BreakingPlateform extends Plateform {
     }
 
     Move(fps,height) {
-        this.gravitySpeed += BreakingPlateform.GRAVITY;
-        this.position.y += BreakingPlateform.SPEED / fps;
+        this._gravitySpeed += BreakingPlateform.GRAVITY;
+        this._position.y += BreakingPlateform.SPEED / fps;
 
 
-        if (this.position.y > height) {
-            this.toDestroy = true;
+        if (this._position.y > height) {
+            this._toDestroy = true;
         }
     }
 
