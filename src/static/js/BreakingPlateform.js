@@ -6,6 +6,10 @@ class BreakingPlateform extends Plateform {
      * @param {int} xCord Correpond à la coordonnées x de la grille
      * @param {int} yCord Correpond à la coordonénes y de la grille
      */
+
+    static SPEED      = 100;
+    static GRAVITY    = 40;
+
     constructor(xCord,yCord){
         super(2,xCord,yCord)
         this._state = 0
@@ -22,5 +26,21 @@ class BreakingPlateform extends Plateform {
      */
     SetStateToOne(){
         this._state = 1
+    }
+
+    Move(fps,height) {
+        this.gravitySpeed += BreakingPlateform.GRAVITY;
+        this.position.y += BreakingPlateform.SPEED / fps;
+
+
+        if (this.position.y > height) {
+            this.toDestroy = true;
+        }
+    }
+
+    Update(fps,height){
+        if(this._state == 1){
+            this.Move(fps,height);
+        }
     }
 }

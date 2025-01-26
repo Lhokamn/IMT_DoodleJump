@@ -159,7 +159,17 @@ class Grid {
         this._grid.forEach(element => {
             switch(element.type){
                 case 1:
-                    element.Update(fps)
+                    element.Update(fps);
+                    break;
+                case 2:
+                    element.Update(fps,this.Height);
+                    if (element.toDestroy){
+                        //console.log(this.grid.indexOf(element));
+                        this.grid = this.grid.filter(item => item !== element);
+                        console.log(this.grid);
+                        break;
+                    }
+
             }
         });
     }

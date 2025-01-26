@@ -13,8 +13,6 @@ class MoovingPlateform extends Plateform {
 
     }
 
-    set XCord(xCord) { this.position.x = xCord}
-
     Move(fps) {
         this.position.x += this.direction * this.SPEED / fps;
     }
