@@ -118,8 +118,15 @@ class View {
         //X1 = 579 Y1 = 330 | X2 = 319 Y2 = 179 
         this._canvas.width=319
         this._canvas.height=179
-        this.ctx.drawImage(this.HEXTILES_IMAGE,579,330,319,179)
+        //this._canvas.style.backgroundImage = 'url(static/img/game-tiles.png)';
+
+        this.ctx.drawImage(HEXTILES_IMAGEE,579,330,319,179,0,0,319,179);
+
+        // this._canvas.style.background.position = '579px 330px';
         this.ctx.drawImage(this.doodle,0,0,DOODLEWIDTH*RESIZE,DOODLEHEIGHT*RESIZE,position.x, position.y, DOODLEWIDTH, DOODLEHEIGHT);
+
+        document.getElementById("restart-section").classList.remove('hidden')
+        document.getElementById("restart-section").classList.add('visible')
     }
     // Met à jour le score dans l'interface utilisateur
     BindGetScore(callback) {
@@ -129,4 +136,5 @@ class View {
     BindGetTiles(callback){
         this.GetTiles = callback
     }
+
 }

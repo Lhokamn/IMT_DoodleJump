@@ -4,8 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="static/css/index.css">
+  <style>
+    .hidden {
+      display: none;
+    }
+    .visible {
+      display: block;
+    }
+  </style>
 </head>
-<body style="background-color: blanchedalmond;">
+<body>
     <h1 style="text-align: center;">Doodle Jump Game</h1>
     <div id="content">
       <div id="content-info">
@@ -19,10 +27,14 @@
         <div id="content-info-score">
           <p id="score">Score: 0</p>
         </div>
+        <div id="restart-section"  class="hidden">
+          <button id="restart-game" onclick="location.reload()">Rejouer</button>
+        </div>
       </div>
       <div id="content-game-canvas">
         <canvas id="my_canvas" width="350" height="500" style="border: 1px solid red"></canvas>
       </div>
+      
     </div>
     
 </body>
@@ -57,6 +69,14 @@
 <script src="static/js/Controller.js"></script>
 
 <script>
-  const app = new Controller(new Model(), new View());
-  app.Update()
+  const HEXTILES_IMAGEE = new Image();
+        HEXTILES_IMAGEE.src = 'static/img/game-tiles.png';
+        Promise.all([
+            new Promise( (resolve) => {HEXTILES_IMAGEE.addEventListener('load', () => { resolve();}); })
+        ])
+        .then(() => {
+          const app = new Controller(new Model(), new View());
+          app.Update()
+        });
+  
 </script>

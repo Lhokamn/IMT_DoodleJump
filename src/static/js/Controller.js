@@ -17,7 +17,7 @@ class Controller {
         this._model.BindDisplay(this.Display.bind(this));
         this._view.BindSetDirection(this.SetDirection.bind(this));
         this._view.BindGetTiles(this.GetTiles.bind(this));
-        this._view.BindGetScore(this.GetScore.bind(this))
+        this._view.BindGetScore(this.GetScore.bind(this));
         this._model.BindEndGame(this.EndGame.bind(this));
     }
 
@@ -58,5 +58,6 @@ class Controller {
         }
         
         requestAnimationFrame(this.Update.bind(this)); // La fonction de rappel est généralement appelée 60 fois par seconde.
+
     }
 }

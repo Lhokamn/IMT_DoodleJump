@@ -44,10 +44,7 @@ class Model {
             this._doodle.YCord += this._gravitySpeed / fps;
         }
         
-        if (!this._doodle.IsAlive){
-            this.EndGame()
-            this._grid.Grid = []
-        } 
+        
         
         this._doodle.XCord += this._doodle.Direction * Model.SPEED / fps,
         this.CheckCollision(fps);
@@ -59,6 +56,11 @@ class Model {
         }
 
         this.b_Display(this._doodle.Position);
+
+        if (!this._doodle.IsAlive){
+            this.EndGame()
+            this._grid.Grid = []
+        } 
 
         /**
          * Update les plateformes
