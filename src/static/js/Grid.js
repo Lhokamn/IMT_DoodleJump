@@ -36,6 +36,7 @@ class Grid {
      * @returns this.grid qui est la grille
      */
     get Grid() {return this._grid}
+    set Grid(newGrid) { this._grid = newGrid }
 
     /**
      * 
@@ -138,11 +139,11 @@ class Grid {
             this._AddNewPlateform(20,20,60)
 
         }
-        else if(doodlePoints < 3400 && higher > 40){
+        else if(doodlePoints < 3400 && higher > 50){
             this._AddNewPlateform(2,49,49)
         }
         else {
-            if( higher > 40) {
+            if( higher > 60) {
                 this._AddNewPlateform(0,100,0)
             }
 

@@ -18,6 +18,7 @@ class Controller {
         this._view.BindSetDirection(this.SetDirection.bind(this));
         this._view.BindGetTiles(this.GetTiles.bind(this));
         this._view.BindGetScore(this.GetScore.bind(this))
+        this._model.BindEndGame(this.EndGame.bind(this));
     }
 
     GetTiles(_model) {
@@ -26,6 +27,10 @@ class Controller {
 
     Display(position) {
         this._view.Display(position);
+    }
+
+    EndGame(position) {
+        this._view.EndGame(position);
     }
 
     SetDirection(newDirection) {

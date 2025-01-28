@@ -8,7 +8,7 @@ class Doodle {
         this._position = {x:xCord, y:yCord}     // Correspond à la position du doodle
         this._direction = direction             // Correspond à la direction du Doodle (gauche et droite)
         this._lastDirection = 0                 // Correspond à la dernière direction du Doodle
-        this._isAlive = 0                       // Correspond à l'état du 
+        this._isAlive = true                    // Correspond à l'état du 
     }
 
     /**
