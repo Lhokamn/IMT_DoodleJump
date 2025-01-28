@@ -24,6 +24,10 @@ class Model {
 
     get Doodle() { return this._doodle }
 
+    Score(){
+        return Doodle.Points;
+    }
+
     /**
      * ==================================================
      *              Méthode de Mouvement
@@ -32,10 +36,15 @@ class Model {
 
     Move(fps) {
         this._gravitySpeed += Model.GRAVITY;
+
+        if (this._doodle.YCord <= CANVASHEIGHT * 0.4 && this._gravitySpeed < 0){ // Si on dépasse les 60% du canvas
+            this._grid.UpdateGridPlateform(this._doodle.Points,this._gravitySpeed / fps)
+            this._doodle.Points -= this._gravitySpeed / fps;
+        }else{
+            this._doodle.YCord += this._gravitySpeed / fps;
+        }
         this._doodle.XCord += this._doodle.Direction * Model.SPEED / fps,
-        this._doodle.YCord += this._gravitySpeed / fps;
         this.CheckCollision(fps);
-        this.CheckDoodleUp(fps)
 
 
         if (this._doodle.YCord > CANVASHEIGHT) {
@@ -115,15 +124,13 @@ class Model {
     CheckDoodleUp(fps){
         if (this._doodle.YCord <= CANVASHEIGHT * 0.4 ){
             while (this._gravitySpeed < 0){
-                console.log(this._doodle.Points)
                 let canvasUp = this._gravitySpeed / fps
-                console.log(canvasUp)
                 this._doodle.Points -= canvasUp;
-                this._grid.UpdateGridPlateform(this._doodle.Points,canvasUp)
                 this._gravitySpeed += Model.GRAVITY 
+                this._grid.UpdateGridPlateform(this._doodle.Points,canvasUp)
+                this.b_Display(this._doodle.Position);
             }
         }
-        console.log("Score :",this._doodle.Points)
     } 
 
     /**

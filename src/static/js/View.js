@@ -1,5 +1,5 @@
 class View {
-    constructor(img_path) {
+    constructor() {
         
         this._canvas = document.getElementById('my_canvas');
         this._scoreElement = document.getElementById('score');
@@ -110,12 +110,14 @@ class View {
 
         // Dessiner doodle.
         this.ctx.drawImage(this.doodle,0,0,DOODLEWIDTH*RESIZE,DOODLEHEIGHT*RESIZE,position.x, position.y, DOODLEWIDTH, DOODLEHEIGHT);
+
+        this._scoreElement.textContent = "Score : " + Math.floor(this.Score())
     }
 
     // Met à jour le score dans l'interface utilisateur
-    UpdateScore(newScore) {
-        this._scoreElement.textContent = `Score: ${newScore}`;
-    }
+    BindGetScore(callback) {
+        this.Score = callback
+     }
 
     BindGetTiles(callback){
         this.GetTiles = callback

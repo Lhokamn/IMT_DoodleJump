@@ -17,6 +17,7 @@ class Controller {
         this._model.BindDisplay(this.Display.bind(this));
         this._view.BindSetDirection(this.SetDirection.bind(this));
         this._view.BindGetTiles(this.GetTiles.bind(this));
+        this._view.BindGetScore(this.GetScore.bind(this))
     }
 
     GetTiles(_model) {
@@ -29,6 +30,10 @@ class Controller {
 
     SetDirection(newDirection) {
         this._model.Doodle.Direction = newDirection
+    }
+
+    GetScore(_model){
+        return this._model.Doodle.Points;
     }
     
     Update() {

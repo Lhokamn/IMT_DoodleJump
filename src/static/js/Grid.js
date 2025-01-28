@@ -81,7 +81,6 @@ class Grid {
                 higher = element.YCord
             }
         })
-        console.log(higher)
         return higher
     }
 
@@ -119,31 +118,34 @@ class Grid {
     UpdateGridPlateform(doodlePoints,canvasUp){
         this._grid.forEach(element=>{
             element.YCord -= canvasUp
-            if(element.yCord >= this._height){
-                let index = this.grid.indexOf(element)
+            if(element.YCord >= this._height){
+                let index = this._grid.indexOf(element)
                 this._grid.splice(index,1)
             } 
         })
+
+       
         let higher = this._GetHigherPlateform()
-        if(doodlePoints < 512 && higher > 40){
+        if(doodlePoints < 512 && higher > 30){
             // Correspond à un niveau facile
             this._AddNewPlateform(100,0,0)
 
         }
-        else if(doodlePoints < 1024 && higher > 40) {
-             this._AddNewPlateform(70,15,15)
+        else if(doodlePoints < 1024 && higher > 30) {
+             this._AddNewPlateform(70,0,30)
         }
-        else if(this.doodlePoints < 1300 && higher > 60){
-            this._AddNewPlateform(20,40,40)
+        else if(doodlePoints < 2500 && higher >= 40){
+            this._AddNewPlateform(20,20,60)
 
         }
-        else if(this.doodlePoints < 2000 && higher > 80){
+        else if(doodlePoints < 3400 && higher > 40){
             this._AddNewPlateform(2,49,49)
         }
         else {
-            if( higher > 80){
+            if( higher > 40) {
                 this._AddNewPlateform(0,100,0)
             }
+
         } 
     }
 
@@ -165,9 +167,7 @@ class Grid {
                 case 2:
                     element.Update(fps,this.Height);
                     if (element.toDestroy){
-                        //console.log(this.grid.indexOf(element));
                         this.grid = this.grid.filter(item => item !== element);
-                        console.log(this.grid);
                         break;
                     }
 
