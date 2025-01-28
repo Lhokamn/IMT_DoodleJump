@@ -50,10 +50,10 @@ class Model {
         this.CheckCollision(fps);
 
 
-         if (this._doodle.YCord > CANVASHEIGHT) {
-            this._Jump();
-            this._doodle.YCord = CANVASHEIGHT-10;
-        }
+        //  if (this._doodle.YCord > CANVASHEIGHT) {
+        //     this._Jump();
+        //     this._doodle.YCord = CANVASHEIGHT-10;
+        // }
 
         this.b_Display(this._doodle.Position);
 
