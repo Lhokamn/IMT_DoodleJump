@@ -1,14 +1,23 @@
 class Doodle {
 
     /**
-     * Permet de créer un nouveau joueur
+     * Instancie un nouveau Doodle
+     * @param {*} xCord Correspond à la coordonnées X de départ du Doodle
+     * @param {*} yCord Correspond à la coordonnées Y de départ du Doodle
+     * @param {*} direction Correspond à la direction du Doodle
      */
     constructor(xCord,yCord, direction){
-        this._points = 0                        // Correspond au point du Doodle
-        this._position = {x:xCord, y:yCord}     // Correspond à la position du doodle
-        this._direction = direction             // Correspond à la direction du Doodle (gauche et droite)
-        this._isAlive = true                    // Correspond à l'état du 
+        this._points = 0                       
+        this._position = {x:xCord, y:yCord}     
+        this._direction = direction             
+        this._isAlive = true                    // Correspond à l'état du Doodle
     }
+
+    /**
+     * ==================================================
+     *                 Getters et Setters
+     * ==================================================
+     */
 
     /**
      * Getter et Setter de l'attribut point
@@ -47,10 +56,15 @@ class Doodle {
 
     /**
      * ==================================================
-     *              Méthode du Doodle
+     *           Méthode de Class privée
      * ==================================================
      */
 
+    /**
+     * ==================================================
+     *            Méthode de Class Public
+     * ==================================================
+     */
 
     /**
      * Positionne le doodle de l'autre coté de la grid
