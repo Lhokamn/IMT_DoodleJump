@@ -13,15 +13,30 @@ class MoovingPlateform extends Plateform {
 
     }
 
-    Move(fps) {
+    /**
+     * ==================================================
+     *                 Getters et Setters
+     * ==================================================
+     */
+
+    /**
+     * ==================================================
+     *           Méthode de Class privée
+     * ==================================================
+     */
+
+    /**
+     * Permet de faire bouger une plateform
+     * @param {*} fps Correspond au fps du navigateur
+     */
+    _Move(fps) {
         this._position.x += this._direction * this.SPEED / fps;
     }
 
     /**
-     * Vérifie si la plateform est en collision avec les murs
+     * Vérifie si la plateform est en collision avec les murs et si c'est le change la direction
      */
-
-    checkCollision(){
+    _CheckCollision(){
         if(this._position.x > 350 - 57){
             this._direction = -1;
         } else if(this._position.x < 0){
@@ -29,8 +44,18 @@ class MoovingPlateform extends Plateform {
         }
     }
 
+    /**
+     * ==================================================
+     *            Méthode de Class Public
+     * ==================================================
+     */
+
+    /**
+     * Méthode appelé pour gérer le mouvement des plateformes mouvante
+     * @param {*} fps Correspond au fps du navigateur
+     */
     Update(fps){
-        this.checkCollision();
-        this.Move(fps);
+        this._CheckCollision();
+        this._Move(fps);
     }
 }
