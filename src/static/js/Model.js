@@ -24,58 +24,24 @@ class Model {
 
     get Doodle() { return this._doodle }
 
-    Score(){
-        return Doodle.Points;
-    }
 
     /**
      * ==================================================
-     *              Méthode de Mouvement
+     *           Méthode de Class privée
      * ==================================================
      */
-
-    Move(fps) {
-        this._gravitySpeed += Model.GRAVITY;
-
-        if (this._doodle.YCord <= CANVASHEIGHT * 0.4 && this._gravitySpeed < 0){ // Si on dépasse les 60% du canvas
-            this._grid.UpdateGridPlateform(this._doodle.Points,this._gravitySpeed / fps)
-            this._doodle.Points -= this._gravitySpeed / fps;
-        }else{
-            this._doodle.YCord += this._gravitySpeed / fps;
-        }
-        
-        
-        
-        this._doodle.XCord += this._doodle.Direction * Model.SPEED / fps,
-        this.CheckCollision(fps);
-
-
-        //  if (this._doodle.YCord > CANVASHEIGHT) {
-        //     this._Jump();
-        //     this._doodle.YCord = CANVASHEIGHT-10;
-        // }
-
-        this.b_Display(this._doodle.Position);
-
-        if (!this._doodle.IsAlive){
-            this.EndGame()
-            this._grid.Grid = []
-        } 
-
-        /**
-         * Update les plateformes
-         */
-        this._grid.Update(fps);
-
-
-        this._doodle.IsOnBorder(0,CANVASWIDTH)
-    }
 
     _Jump() {
         this._gravitySpeed = -Model.JUMP_FORCE;
     }
+    
+    _EndGame(){
+        this.b_EndGame(this.Doodle.Position);
+        this.Doodle.Position.x = (CANVASWIDTH/2) - (DOODLEWIDTH/2);
+        this.Doodle.Position.y = 100;
+    }
 
-    CheckCollision(fps){
+    _CheckCollision(fps){
 
         if(this._gravitySpeed > 0){
             if (this._doodle.YCord + DOODLEHEIGHT < CANVASHEIGHT) {
@@ -89,10 +55,10 @@ class Model {
 
                     if (this._doodle._lastDirection == 1){ // Doodle est à droite
                         startDoddle = {x: this._doodle.Position.x, y: this._doodle.Position.y}
-                        endDoddle = {x: this._doodle.Position.x+DOODLEWIDTH+DOODLETRUNK, y: this._doodle.Position.y+DOODLEHEIGHT}
-                    }else{ // Doodle est à gauche
-                        startDoddle = {x: this._doodle.Position.x, y: this._doodle.Position.y}
                         endDoddle = {x: this._doodle.Position.x+DOODLEWIDTH-DOODLETRUNK, y: this._doodle.Position.y+DOODLEHEIGHT}
+                    }else{ // Doodle est à gauche
+                        startDoddle = {x: (this._doodle.Position.x+DOODLETRUNK), y: this._doodle.Position.y}
+                        endDoddle = {x: (this._doodle.Position.x+DOODLETRUNK)+DOODLEWIDTH, y: this._doodle.Position.y+DOODLEHEIGHT}
 
                     }
                     /**
@@ -113,8 +79,10 @@ class Model {
                              */
 
                             if ((endDoddle.y + (this._gravitySpeed / fps)) >= plateform.YCord){
-                                this._Jump();
-                                if (plateform._type == 2){
+                                
+                                this._Jump()
+                                                                
+                                if (plateform.Type == 2){
                                     plateform.SetStateToOne();
                                 }
                             }
@@ -131,14 +99,43 @@ class Model {
         }
     }
 
-    EndGame(){
-        this.b_EndGame(this.Doodle.Position);
-        this.Doodle.Position.x = (CANVASWIDTH/2) - (DOODLEWIDTH/2);
-        this.Doodle.Position.y = 100;
-    }
-    BindEndGame(callback){
-        this.b_EndGame = callback;
-    }
+    /**
+     * ==================================================
+     *            Méthode de Class Public
+     * ==================================================
+     */    
+
+    Move(fps) {
+        this._gravitySpeed += Model.GRAVITY;
+
+        if (this._doodle.YCord <= CANVASHEIGHT * 0.4 && this._gravitySpeed < 0){ // Si on dépasse les 60% du canvas
+            this._grid.UpdateGridPlateform(this._doodle.Points,this._gravitySpeed / fps)
+            this._doodle.Points -= this._gravitySpeed / fps;
+        }else{
+            this._doodle.YCord += this._gravitySpeed / fps;
+        }
+        
+        
+        
+        this._doodle.XCord += this._doodle.Direction * Model.SPEED / fps,
+        this._CheckCollision(fps);
+
+
+        this.b_Display(this._doodle.Position);
+
+        if (!this._doodle.IsAlive){
+            this._EndGame()
+            this._grid.Grid = []
+        } 
+
+        
+        // Update les plateformes
+        this._grid.Update(fps);
+
+        // Met à jour le doodle si il dépasse la taille du canvas
+        this._doodle.IsOnBorder(0,CANVASWIDTH)
+    } 
+    
 
     /**
      * ==================================================
@@ -148,5 +145,9 @@ class Model {
 
     BindDisplay(callback){
         this.b_Display = callback;
+    }
+
+    BindEndGame(callback){
+        this.b_EndGame = callback;
     }
 }
