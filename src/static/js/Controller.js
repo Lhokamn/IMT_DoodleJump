@@ -39,6 +39,9 @@ class Controller {
      * ==================================================
      */
 
+    /**
+     * Méthode de base pour faire fonctionner le Doodle
+     */
     Update() {
         /* Calcul du deltaTime */
         let currentTime = Date.now();
