@@ -36,6 +36,11 @@ class BreakingPlateform extends Plateform {
      * ==================================================
      */
 
+    /**
+     * Gère le mouvement en Y des plateforme 
+     * @param {int} fps Correspond au nombre de fps du navigateur
+     * @param {int} height Correspond à la taille du canvas
+     */
     _Move(fps,height) {
         this._gravitySpeed += BreakingPlateform.GRAVITY;
         this._position.y += BreakingPlateform.SPEED / fps;
@@ -53,14 +58,17 @@ class BreakingPlateform extends Plateform {
      */
 
     /**
-     * Met à 0 le nombre de coup total
+     * Met à 1 le nombre de coup total
      */
     SetStateToOne(){
         this._state = 1
     }
 
-    
-
+    /**
+     * Permet de gérer toutes les update de la class
+     * @param {int} fps Correspond au nombre de fps du navigateur
+     * @param {int} height Correspond à la taille du canvas
+     */
     Update(fps,height){
         if(this._state == 1){
             this._Move(fps,height);
