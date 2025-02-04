@@ -1,5 +1,9 @@
 class View {
-        constructor() {
+        
+    /**
+     * Instancie un nouvel élément View
+     */
+    constructor() {
         
         this._canvas = document.getElementById('my_canvas');
         this._scoreElement = document.getElementById('score');
@@ -20,6 +24,15 @@ class View {
         this.Events();
     }
 
+    /**
+     * ==================================================
+     *                 Getters et Setters
+     * ==================================================
+     */
+
+    /**
+     * Permet de configurer la class
+     */
     _InitView(){
         this._canvas.style.backgroundImage = 'url(static/img/bck@2x.png)';
         this._canvas.style.backgroundSize = 'cover';
@@ -40,10 +53,21 @@ class View {
         
     }
 
-    BindSetDirection(callback) {
-        this.b_SetDirection = callback;
-    }
+    /**
+     * ==================================================
+     *           Méthode de Class privée
+     * ==================================================
+     */
 
+    /**
+     * ==================================================
+     *            Méthode de Class Public
+     * ==================================================
+     */
+
+    /**
+     * Gère les évenements pour la gestion du déplacement avec les flèches
+     */
     Events() {
         document.addEventListener('keydown', (evt) => {                
             if (evt.key == 'ArrowLeft' || evt.key == 'ArrowRight') {
@@ -80,12 +104,16 @@ class View {
         });
     }
 
+    /**
+     * Met à jour l'affichage sur le navigateur
+     * @param {*} position Correspond à la position du Doodle
+     */
     Display(position) {
 
         this.ctx.clearRect(0, 0, CANVASWIDTH, CANVASHEIGHT);
 
         // Dessiner les tuiles.
-        this.GetTiles().Grid.Grid.forEach(element => {
+        this.GetTiles().forEach(element => {
 
             // Recupere la tuile correspondante.
             let tile;
@@ -109,30 +137,58 @@ class View {
         });
 
         // Dessiner doodle.
-        this.ctx.drawImage(this.doodle,0,0,DOODLEWIDTH*RESIZE,DOODLEHEIGHT*RESIZE,position.x, position.y, DOODLEWIDTH, DOODLEHEIGHT);
+        this.ctx.drawImage(this.doodle,0,120 - DOODLEHEIGHT*RESIZE,DOODLEWIDTH*RESIZE,DOODLEHEIGHT*RESIZE,position.x, position.y, DOODLEWIDTH, DOODLEHEIGHT);
+        
 
         this._scoreElement.textContent = "Score: " + Math.floor(this.Score())
     }
 
+    /**
+     * Gestion de l'affichage de la fin du jeux
+     * @param {*} position Correspond à la position du Doodle
+     */
     EndGame(position){
         //X1 = 579 Y1 = 330 | X2 = 319 Y2 = 179 
         this._canvas.width=319
         this._canvas.height=179
-        //this._canvas.style.backgroundImage = 'url(static/img/game-tiles.png)';
 
-        this.ctx.drawImage(HEXTILES_IMAGEE,579,330,319,179,0,0,319,179);
+        // Image du finish
+        this.ctx.drawImage(HEXTILES_IMAGEE,579,330,this._canvas.width,this._canvas.height,0,0,this._canvas.width,this._canvas.height);
 
-        // this._canvas.style.background.position = '579px 330px';
+        // Draw Image
         this.ctx.drawImage(this.doodle,0,0,DOODLEWIDTH*RESIZE,DOODLEHEIGHT*RESIZE,position.x, position.y, DOODLEWIDTH, DOODLEHEIGHT);
 
         document.getElementById("restart-section").classList.remove('hidden')
         document.getElementById("restart-section").classList.add('visible')
     }
-    // Met à jour le score dans l'interface utilisateur
+
+
+    /**
+     * ==================================================
+     *              Méthode de callback
+     * ==================================================
+     */
+    
+    /**
+     * Bind de la direction pour gérer l'affichage
+     * @param {*} callback 
+     */
+    BindSetDirection(callback) {
+        this.b_SetDirection = callback;
+    }
+
+    /**
+     * Bind du score pour le donner au joueurs
+     * @param {*} callback 
+     */
     BindGetScore(callback) {
         this.Score = callback
-     }
+    }
 
+    /**
+     * Bind pour récuprer les plateformes
+     * @param {*} callback 
+     */
     BindGetTiles(callback){
         this.GetTiles = callback
     }

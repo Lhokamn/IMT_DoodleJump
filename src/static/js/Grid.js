@@ -1,7 +1,9 @@
 class Grid {
 
     /**
-     * Permet de créer un nouvel élément de type grid
+     * Instancie une nouvelle Grid
+     * @param {*} width Correspond à la longueur du plateau de jeux
+     * @param {*} height Correspond à la largeur du plateau de jeux
      */
     constructor(width,height){
         this._width = width;
@@ -15,7 +17,7 @@ class Grid {
 
     /**
      * ==================================================
-     *          Gestion des Getters et Setters
+     *                 Getters et Setters
      * ==================================================
      */
 
@@ -39,13 +41,14 @@ class Grid {
     set Grid(newGrid) { this._grid = newGrid }
 
     /**
-     * 
+     * Retourne le jump de la grid
+     * @returns this._jumpMax
      */
     get Jump() { return this._jumpMax }
 
     /**
      * ==================================================
-     *               Méthode de Class
+     *           Méthode de Class privée
      * ==================================================
      */
 
@@ -61,15 +64,6 @@ class Grid {
         } 
     }
 
-    /**
-     * Récupère une plateforme avec toutes ces propriétés
-     * @param {int} xID Correspond à son numéro de ligne
-     * @param {int} yID Correspond à son numéro de colonne
-     * @returns une Platedform
-     */
-    GetPlateformByID(xID,yID){
-        return this._grid[xID][yID]
-    }
 
     /**
      * Retourne la plateforme la plus sur le canvas (donc avec une position y la plus proche de 0)
@@ -91,32 +85,62 @@ class Grid {
      * @param {*} probaB La valeur doit être comprise entre 0 et 100. Correpond à la probabilité d'avoir une Plateform Cassable
      * @param {*} probaM La valeur doit être comprise entre 0 et 100. Correpond à la probabilité d'avoir une Plateform Mouvante
      */
-    _AddNewPlateform(probaS, probaB,probaM){
+    _AddNewPlateformGrid(probaS, probaB,probaM){
 
         // Vérifiez que la somme des probabilités est valide
         if (probaS + probaB + probaM !== 100) {
             throw new Error("La somme des probabilités doit être égale à 100.");
         }
-        let xCord = Math.floor(Math.random()* (((this._width) - PLATEFORMWIDTH) - PLATEFORMWIDTH)+ PLATEFORMWIDTH)  // Récupère une valeur entre 0 et le nombre maximum de pixel du canvas
+        let xCord = Math.floor(Math.random()* (((this._width) - PLATEFORMWIDTH) - 0)+ 0)  // Récupère une valeur entre 0 et le nombre maximum de pixel du canvas
         
         // Génération d'un nombre aléatoire pour choisir le type
         let randomValue = Math.random() * 100;
         if(randomValue < probaS){
-            this._grid.push(new StandardPlateform(xCord,0))
+            this._grid.push(new StandardPlateform(xCord,-30))
         }
         else if(randomValue < probaS + probaB){
-            this._grid.push(new BreakingPlateform(xCord,0))
+            this._grid.push(new BreakingPlateform(xCord,-30))
         }
         else{
-            this._grid.push(new MoovingPlateform(xCord,0))
+            this._grid.push(new MoovingPlateform(xCord,-30))
         }
     }
 
+
     /**
-     * Gestion de la mise à jour des plateform sur la grille
-     * @param {int} doodlePoints 
+     * Permet d'ajouter une nouvelle valeur a notre liste
+     * @param {*} doodlePoints Est les points du joueurs pour gérer la difficultés
      */
-    UpdateGridPlateform(doodlePoints,canvasUp){
+    _AddNewPlateform(doodlePoints){
+        let higher = this._GetHigherPlateform()
+        if(doodlePoints < 512 && higher > 10){
+            // Correspond à un niveau facile
+            this._AddNewPlateformGrid(100,0,0)
+
+        }
+        else if(doodlePoints < 1024 && higher > 10) {
+             this._AddNewPlateformGrid(70,0,30)
+        }
+        else if(doodlePoints < 2500 && higher > 20){
+            this._AddNewPlateformGrid(20,20,60)
+
+        }
+        else if(doodlePoints < 3400 && higher > 30){
+            this._AddNewPlateformGrid(2,49,49)
+        }
+        else {
+            if( higher > 50) {
+                this._AddNewPlateformGrid(0,100,0)
+            }
+
+        } 
+    }
+
+    /**
+     * Permet de retirer toutes les grilles qui dépassent du canvas
+     * @param {*} canvasUp est la distance que le canvas descend
+     */
+    _DeletePlateformGrid(canvasUp){
         this._grid.forEach(element=>{
             element.YCord -= canvasUp
             if(element.YCord >= this._height){
@@ -124,40 +148,19 @@ class Grid {
                 this._grid.splice(index,1)
             } 
         })
-
-       
-        let higher = this._GetHigherPlateform()
-        if(doodlePoints < 512 && higher > 30){
-            // Correspond à un niveau facile
-            this._AddNewPlateform(100,0,0)
-
-        }
-        else if(doodlePoints < 1024 && higher > 30) {
-             this._AddNewPlateform(70,0,30)
-        }
-        else if(doodlePoints < 2500 && higher >= 40){
-            this._AddNewPlateform(20,20,60)
-
-        }
-        else if(doodlePoints < 3400 && higher > 50){
-            this._AddNewPlateform(2,49,49)
-        }
-        else {
-            if( higher > 60) {
-                this._AddNewPlateform(0,100,0)
-            }
-
-        } 
     }
+
+
 
     /**
      * ==================================================
-     *               Méthode de Class
+     *            Méthode de Class Public
      * ==================================================
      */
 
     /**
-     * Update les plateformes de type 1&2*
+     * Update les plateform mouvante et cassable
+     * @param {int} fps 
      */
     Update(fps){
         this._grid.forEach(element => {
@@ -174,6 +177,18 @@ class Grid {
 
             }
         });
+    }
+
+    /**
+     * Gestion de la mise à jour des plateform sur la grille
+     * @param {int} doodlePoints 
+     * @param {int} canvasUp 
+     */
+    UpdateGridPlateform(doodlePoints,canvasUp){
+    
+        this._DeletePlateformGrid(canvasUp)
+
+        this._AddNewPlateform(doodlePoints)        
     }
 
 }

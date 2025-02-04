@@ -1,15 +1,23 @@
 class Doodle {
 
     /**
-     * Permet de créer un nouveau joueur
+     * Instancie un nouveau Doodle
+     * @param {*} xCord Correspond à la coordonnées X de départ du Doodle
+     * @param {*} yCord Correspond à la coordonnées Y de départ du Doodle
+     * @param {*} direction Correspond à la direction du Doodle
      */
     constructor(xCord,yCord, direction){
-        this._points = 0                        // Correspond au point du Doodle
-        this._position = {x:xCord, y:yCord}     // Correspond à la position du doodle
-        this._direction = direction             // Correspond à la direction du Doodle (gauche et droite)
-        this._lastDirection = 0                 // Correspond à la dernière direction du Doodle
-        this._isAlive = true                    // Correspond à l'état du 
+        this._points = 0                       
+        this._position = {x:xCord, y:yCord}     
+        this._direction = direction             
+        this._isAlive = true                    // Correspond à l'état du Doodle
     }
+
+    /**
+     * ==================================================
+     *                 Getters et Setters
+     * ==================================================
+     */
 
     /**
      * Getter et Setter de l'attribut point
@@ -36,11 +44,9 @@ class Doodle {
      * Getter et setters pour la direction
      */
     get Direction() { return this._direction }
-    set Direction(direction) { 
-        if(direction!=0){
-            this._lastDirection = this._direction
-        }
-        this._direction = direction}
+    set Direction(direction) { this._direction = direction }
+
+    get LastDirection() { return this._lastDirection }
 
     /**
      * Getter et Setter de l'attribut isAlive
@@ -50,10 +56,15 @@ class Doodle {
 
     /**
      * ==================================================
-     *              Méthode du Doodle
+     *           Méthode de Class privée
      * ==================================================
      */
 
+    /**
+     * ==================================================
+     *            Méthode de Class Public
+     * ==================================================
+     */
 
     /**
      * Positionne le doodle de l'autre coté de la grid

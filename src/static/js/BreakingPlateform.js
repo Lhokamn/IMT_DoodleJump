@@ -18,19 +18,30 @@ class BreakingPlateform extends Plateform {
     }
 
     /**
+     * ==================================================
+     *                 Getters et Setters
+     * ==================================================
+     */
+
+    /**
      * Permet de récuéprer le nombre de hit restant de la plateform
      * @returns this.nbHit qui est le nombre de coup
      */
     get State() { return this._state }
 
-    /**
-     * Met à 0 le nombre de coup total
-     */
-    SetStateToOne(){
-        this._state = 1
-    }
 
-    Move(fps,height) {
+    /**
+     * ==================================================
+     *           Méthode de Class privée
+     * ==================================================
+     */
+
+    /**
+     * Gère le mouvement en Y des plateforme 
+     * @param {int} fps Correspond au nombre de fps du navigateur
+     * @param {int} height Correspond à la taille du canvas
+     */
+    _Move(fps,height) {
         this._gravitySpeed += BreakingPlateform.GRAVITY;
         this._position.y += BreakingPlateform.SPEED / fps;
 
@@ -40,9 +51,27 @@ class BreakingPlateform extends Plateform {
         }
     }
 
+    /**
+     * ==================================================
+     *            Méthode de Class Public
+     * ==================================================
+     */
+
+    /**
+     * Met à 1 le nombre de coup total
+     */
+    SetStateToOne(){
+        this._state = 1
+    }
+
+    /**
+     * Permet de gérer toutes les update de la class
+     * @param {int} fps Correspond au nombre de fps du navigateur
+     * @param {int} height Correspond à la taille du canvas
+     */
     Update(fps,height){
         if(this._state == 1){
-            this.Move(fps,height);
+            this._Move(fps,height);
         }
     }
 }
