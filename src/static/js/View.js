@@ -106,10 +106,11 @@ class View {
                     break;
             };
             this.ctx.drawImage(this.HEXTILES_IMAGE,tile.x,tile.y,tile.w,tile.h,element.XCord,element.YCord,tile.w,tile.h);
+            
         });
 
         // Dessiner doodle.
-        this.ctx.drawImage(this.doodle,0,0,DOODLEWIDTH*RESIZE,DOODLEHEIGHT*RESIZE,position.x, position.y, DOODLEWIDTH, DOODLEHEIGHT);
+        this.ctx.drawImage(this.doodle,0,120 - DOODLEHEIGHT*RESIZE,DOODLEWIDTH*RESIZE,DOODLEHEIGHT*RESIZE,position.x, position.y, DOODLEWIDTH, DOODLEHEIGHT);
 
         this._scoreElement.textContent = "Score: " + Math.floor(this.Score())
     }
@@ -120,7 +121,8 @@ class View {
         this._canvas.height=179
         //this._canvas.style.backgroundImage = 'url(static/img/game-tiles.png)';
 
-        this.ctx.drawImage(HEXTILES_IMAGEE,579,330,319,179,0,0,319,179);
+        // Image du finish
+        this.ctx.drawImage(HEXTILES_IMAGEE,579,330,this._canvas.width,this._canvas.height,0,0,this._canvas.width,this._canvas.height);
 
         // this._canvas.style.background.position = '579px 330px';
         this.ctx.drawImage(this.doodle,0,0,DOODLEWIDTH*RESIZE,DOODLEHEIGHT*RESIZE,position.x, position.y, DOODLEWIDTH, DOODLEHEIGHT);
@@ -131,7 +133,7 @@ class View {
     // Met à jour le score dans l'interface utilisateur
     BindGetScore(callback) {
         this.Score = callback
-     }
+    }
 
     BindGetTiles(callback){
         this.GetTiles = callback

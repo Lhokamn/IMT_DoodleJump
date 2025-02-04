@@ -53,26 +53,32 @@ class Model {
                     let startDoddle;
                     let endDoddle;
 
-                    if (this._doodle._lastDirection == 1){ // Doodle est à droite
+                    if (this._doodle.LastDirection == 1 ){ // Doodle est à droite
+                        startDoddle = {x: this._doodle.Position.x + DOODLETRUNK, y: this._doodle.Position.y}
+                        endDoddle = {x: this._doodle.Position.x + DOODLEWIDTH, y: this._doodle.Position.y+DOODLEHEIGHT - 10}
+                    }
+                    else if (this._doodle.LastDirection == -1){ // Doodle est à gauche
                         startDoddle = {x: this._doodle.Position.x, y: this._doodle.Position.y}
-                        endDoddle = {x: this._doodle.Position.x+DOODLEWIDTH-DOODLETRUNK, y: this._doodle.Position.y+DOODLEHEIGHT}
-                    }else{ // Doodle est à gauche
-                        startDoddle = {x: (this._doodle.Position.x+DOODLETRUNK), y: this._doodle.Position.y}
-                        endDoddle = {x: (this._doodle.Position.x+DOODLETRUNK)+DOODLEWIDTH, y: this._doodle.Position.y+DOODLEHEIGHT}
+                        endDoddle = {x: this._doodle.Position.x + DOODLEWIDTH - DOODLETRUNK, y: this._doodle.Position.y+DOODLEHEIGHT - 10}
 
                     }
+
+                    
+
                     /**
                      * Si doodle sur dans la même "colonne" que la plateform
                      */
                     if (
-                        (plateform.XCord <= startDoddle.x && startDoddle.x < plateform.XCord + PLATEFORMWIDTH)
+                        (plateform.XCord <= startDoddle.x && startDoddle.x <= plateform.XCord + PLATEFORMWIDTH)
                             ||
-                        (plateform.XCord <= endDoddle.x && endDoddle.x < plateform.XCord + PLATEFORMWIDTH)
+                        (plateform.XCord <= endDoddle.x && endDoddle.x <= plateform.XCord + PLATEFORMWIDTH)
                     ){
+                       
                         /**
                          * Si Doodle est au dessus de la plateform
                          */
-                        if (endDoddle.y < plateform.YCord ){
+                        if (endDoddle.y <= plateform.YCord ){
+
 
                             /**
                              * Si Doodle est en dessous la plateform la prochaine frame
