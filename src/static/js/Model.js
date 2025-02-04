@@ -43,48 +43,28 @@ class Model {
 
     _CheckCollision(fps){
 
-        if(this._gravitySpeed > 0){
+        if(this._gravitySpeed >= 0){
             if (this._doodle.YCord + DOODLEHEIGHT < CANVASHEIGHT) {
 
                 this._grid.Grid.forEach(plateform => {
                     /**
                      * Si doodle au dessus ou sur la plateform & prochaine frame inférieur à la plateform
                      */
-                    let startDoddle;
-                    let endDoddle;
-
-                    if (this._doodle.LastDirection == 1 ){ // Doodle est à droite
-                        startDoddle = {x: this._doodle.Position.x + DOODLETRUNK, y: this._doodle.Position.y}
-                        endDoddle = {x: this._doodle.Position.x + DOODLEWIDTH, y: this._doodle.Position.y+DOODLEHEIGHT - 10}
-                    }
-                    else if (this._doodle.LastDirection == -1){ // Doodle est à gauche
-                        startDoddle = {x: this._doodle.Position.x, y: this._doodle.Position.y}
-                        endDoddle = {x: this._doodle.Position.x + DOODLEWIDTH - DOODLETRUNK, y: this._doodle.Position.y+DOODLEHEIGHT - 10}
-
-                    }
-
                     
-
-                    /**
-                     * Si doodle sur dans la même "colonne" que la plateform
-                     */
-                    if (
-                        (plateform.XCord <= startDoddle.x && startDoddle.x <= plateform.XCord + PLATEFORMWIDTH)
-                            ||
-                        (plateform.XCord <= endDoddle.x && endDoddle.x <= plateform.XCord + PLATEFORMWIDTH)
-                    ){
+                    
+                    if (plateform.XCord - 15 <= this._doodle.XCord + DOODLETRUNK &&  this._doodle.XCord + DOODLEWIDTH - DOODLETRUNK*2 <= plateform.XCord + PLATEFORMWIDTH +15 ){
                        
                         /**
                          * Si Doodle est au dessus de la plateform
                          */
-                        if (endDoddle.y <= plateform.YCord ){
+                        if (this._doodle.YCord + DOODLEHEIGHT <= plateform.YCord ){
 
 
                             /**
                              * Si Doodle est en dessous la plateform la prochaine frame
                              */
 
-                            if ((endDoddle.y + (this._gravitySpeed / fps)) >= plateform.YCord){
+                            if ((this._doodle.YCord + DOODLEHEIGHT + (this._gravitySpeed / fps)) >= plateform.YCord){
                                 
                                 this._Jump()
                                                                 

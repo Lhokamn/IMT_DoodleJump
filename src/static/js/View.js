@@ -106,11 +106,11 @@ class View {
                     break;
             };
             this.ctx.drawImage(this.HEXTILES_IMAGE,tile.x,tile.y,tile.w,tile.h,element.XCord,element.YCord,tile.w,tile.h);
-            
         });
 
         // Dessiner doodle.
         this.ctx.drawImage(this.doodle,0,120 - DOODLEHEIGHT*RESIZE,DOODLEWIDTH*RESIZE,DOODLEHEIGHT*RESIZE,position.x, position.y, DOODLEWIDTH, DOODLEHEIGHT);
+        
 
         this._scoreElement.textContent = "Score: " + Math.floor(this.Score())
     }

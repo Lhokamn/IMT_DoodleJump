@@ -7,7 +7,6 @@ class Doodle {
         this._points = 0                        // Correspond au point du Doodle
         this._position = {x:xCord, y:yCord}     // Correspond à la position du doodle
         this._direction = direction             // Correspond à la direction du Doodle (gauche et droite)
-        this._lastDirection = 1         // Correspond à la dernière direction du Doodle
         this._isAlive = true                    // Correspond à l'état du 
     }
 
@@ -36,12 +35,7 @@ class Doodle {
      * Getter et setters pour la direction
      */
     get Direction() { return this._direction }
-    set Direction(direction) { 
-        if(direction !== 0 ){
-            this._lastDirection = this._direction !== 0 ? this._direction : this._lastDirection;
-        }
-        this._direction = direction
-    }
+    set Direction(direction) { this._direction = direction }
 
     get LastDirection() { return this._lastDirection }
 
