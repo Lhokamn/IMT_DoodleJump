@@ -17,10 +17,28 @@ class Plateform{
     }
 
 
+    /**
+     * ==================================================
+     *                 Getters et Setters
+     * ==================================================
+     */
+
     get Type() { return this._type }
     get XCord() { return this._position.x }
     get YCord() { return this._position.y }
 
     set YCord(yCord) {this._position.y = yCord}
+
+     /**
+     * ==================================================
+     *           Méthode de Class privée
+     * ==================================================
+     */
+
+    /**
+     * ==================================================
+     *            Méthode de Class Public
+     * ==================================================
+     */
 
 }
