@@ -1,9 +1,9 @@
 class Controller {
 
     /**
-     * 
-     * @param {*} model 
-     * @param {*} view 
+     * Permet d'instancier un nouveau controller
+     * @param {Model} model Correpond à une class Model
+     * @param {View} view Correspond à une class View
      */
     constructor(model, view) {
         this._model = model;
@@ -21,26 +21,24 @@ class Controller {
         this._model.BindEndGame(this.EndGame.bind(this));
     }
 
-    GetTiles(_model) {
-        return this._model;
-    }
+    /**
+     * ==================================================
+     *                 Getters et Setters
+     * ==================================================
+     */
 
-    Display(position) {
-        this._view.Display(position);
-    }
+    /**
+     * ==================================================
+     *           Méthode de Class privée
+     * ==================================================
+     */
 
-    EndGame(position) {
-        this._view.EndGame(position);
-    }
+    /**
+     * ==================================================
+     *            Méthode de Class Public
+     * ==================================================
+     */
 
-    SetDirection(newDirection) {
-        this._model.Doodle.Direction = newDirection
-    }
-
-    GetScore(_model){
-        return this._model.Doodle.Points;
-    }
-    
     Update() {
         /* Calcul du deltaTime */
         let currentTime = Date.now();
@@ -60,4 +58,56 @@ class Controller {
         requestAnimationFrame(this.Update.bind(this)); // La fonction de rappel est généralement appelée 60 fois par seconde.
 
     }
+
+    /**
+     * Récupère le tableaux de palteformes du Model
+     * @param {Model} _model Permet de retourner un attribut du model
+     * @returns this._model.Grid.Grid
+     */
+    GetTiles() {
+        return this._model.Grid.Grid;
+    }
+
+    /**
+     * ==================================================
+     *              Méthode de callback
+     * ==================================================
+     */
+
+    
+
+    /**
+     * Bind la méthode Display
+     * @param {*} position 
+     */
+    Display(position) {
+        this._view.Display(position);
+    }
+
+    /**
+     * Bind la méthode Endgame
+     * @param {*} position 
+     */
+    EndGame(position) {
+        this._view.EndGame(position);
+    }
+
+    /**
+     * Bind la méthode de Changement de direction
+     * @param {*} newDirection 
+     */
+    SetDirection(newDirection) {
+        this._model.Doodle.Direction = newDirection
+    }
+
+    /**
+     * Bind la méthode pour récupérer les points du Doodle
+     * @param {*} _model 
+     * @returns this._model.Doodle.Points 
+     */
+    GetScore(_model){
+        return this._model.Doodle.Points
+    }
+    
+    
 }
