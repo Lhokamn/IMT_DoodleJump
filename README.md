@@ -7,8 +7,8 @@ Pour jouer à notre version de Doodle simplifié, il faut prendre ce lien ci : [
 
 # Auteur
 
-Aksel Caudel aksel.claudel@etu.mines-ales.fr
-Corentin Claudel corentin.claudel@etu.mines-ales.fr
+- Aksel Caudel [aksel.claudel@etu.mines-ales.fr](mailto:aksel.claudel@etu.mines-ales.fr)
+- Corentin Claudel [corentin.claudel@etu.mines-ales.fr](mailto:corentin.claudel@etu.mines-ales.fr)
 
 # Conception et Création
 
