@@ -1,7 +1,9 @@
 class Grid {
 
     /**
-     * Permet de créer un nouvel élément de type grid
+     * Instancie une nouvelle Grid
+     * @param {*} width Correspond à la longueur du plateau de jeux
+     * @param {*} height Correspond à la largeur du plateau de jeux
      */
     constructor(width,height){
         this._width = width;
