@@ -7,6 +7,9 @@ class Model {
     static JUMP_FORCE = 600;
     static SPEED      = 200;
 
+    /**
+     * Instancie un nouvelle classe Model
+     */
     constructor(){
         this._grid = new Grid(CANVASWIDTH, CANVASHEIGHT );
         this._gravitySpeed = 0;
@@ -31,16 +34,27 @@ class Model {
      * ==================================================
      */
 
+
+    /**
+     * Inverse la gravité pour permettre le saut ou la chute
+     */
     _Jump() {
         this._gravitySpeed = -Model.JUMP_FORCE;
     }
     
+    /**
+     * Place le Doodle au milieu du canvas de la fin du jeux
+     */
     _EndGame(){
         this.b_EndGame(this.Doodle.Position);
         this.Doodle.Position.x = (CANVASWIDTH/2) - (DOODLEWIDTH/2);
         this.Doodle.Position.y = 100;
     }
 
+    /**
+     * Gère les collisions entre le Doodle et les plateformes
+     * @param {*} fps Correspond au fps du navigateur
+     */
     _CheckCollision(fps){
 
         if(this._gravitySpeed >= 0){
@@ -91,6 +105,10 @@ class Model {
      * ==================================================
      */    
 
+    /**
+     * Méthode a appeler depuis le constructeur. Elle permet d'activer toutes les méthodes du Model
+     * @param {*} fps Correspond au fps du navigateur
+     */
     Move(fps) {
         this._gravitySpeed += Model.GRAVITY;
 
@@ -129,10 +147,18 @@ class Model {
      * ==================================================
      */
 
+    /**
+     * Bind de la méthode du Display
+     * @param {*} callback 
+     */
     BindDisplay(callback){
         this.b_Display = callback;
     }
 
+    /**
+     * Bind de la méthode du EndGame
+     * @param {*} callback 
+     */
     BindEndGame(callback){
         this.b_EndGame = callback;
     }
