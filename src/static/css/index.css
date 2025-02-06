@@ -1,54 +1,155 @@
-/* index.css */
+/* 
+   ==============================
+       STYLE "DOODLE JUMP"
+   ==============================
+*/
 
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: lightblue;
+/* Import d'une police manuscrite */
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+
+/* Réinitialisation de base pour éviter les marges et paddings par défaut */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-  
+
+/* Corps de la page : style "feuille quadrillée" */
+html, body {
+  height: 100%;
+  font-family: 'Architects Daughter', cursive, sans-serif;
+  background:
+    linear-gradient(#ccc 1px, transparent 1px),
+    linear-gradient(90deg, #ccc 1px, transparent 1px);
+  /* Les deux lignes de background ci-dessus créent un quadrillage :
+     - linear-gradient vertical
+     - linear-gradient horizontal
+  */
+  background-size: 20px 20px;
+  color: #333; /* Couleur du texte */
+}
+
+/* Titre principal */
 h1 {
-    text-align: center;
-    margin: 20px 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+  text-align: center;
+  margin: 20px 0;
+  font-size: 2rem;
+  color: #1a1a1a;
 }
-  
-#content {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-top: 80px; /* Place la zone sous le titre */
-    width: 100%;
-    height: calc(100vh - 100px); /* Hauteur totale moins l'espace pour le titre */
-    box-sizing: border-box;
-}
-  
-#content-info {
-    width: 25%; /* Occupe un quart de la largeur */
-    padding: 20px;
-    box-sizing: border-box;
-}
-  
-#content-info-author, #content-info-score {
-    margin-bottom: 20px;
-}
-  
-#content-game-canvas {
-    width: 75%; /* Occupe les trois quarts de la largeur */
-    display: flex;
-    justify-content: left;
-    align-items: left;
-}
-  
-canvas {
-    border: 1px solid red;
-}
-  
 
-button {
-    width: 300px;
+/* 
+   ==============================
+           CONTENEUR
+   ==============================
+*/
+#content {
+  /* Largeur max pour centrer la zone de jeu */
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.8); 
+  border: 2px solid #999;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* 
+   ==============================
+     SECTION INFO & AUTEURS
+   ==============================
+*/
+#content-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+/* Auteur du jeu */
+#content-info-author {
+  flex: 1;
+  margin-right: 10px;
+}
+
+#content-info-author h2 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+/* Liste des auteurs */
+#content-info-author ul {
+  list-style-type: circle;
+  padding-left: 20px;
+}
+
+#content-info-author li {
+  margin-bottom: 4px;
+}
+
+/* 
+   ==============================
+     SECTION SCORE & RESTART
+   ==============================
+*/
+#content-info-score {
+  flex: 1;
+  text-align: center;
+}
+
+#score {
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: 2px dashed #333;
+  padding: 5px 10px;
+  display: inline-block;
+  background-color: #fff9c4; /* Couleur "post-it" clair */
+  border-radius: 4px;
+}
+
+/* Bouton de "Rejouer" */
+#restart-section {
+  flex: 1;
+  text-align: right;
+}
+
+/* On masque ce qui a la classe .hidden par défaut 
+   (il y a aussi dans le HTML un style inline pour .hidden/.visible) */
+.hidden {
+  display: none !important;
+}
+.visible {
+  display: block !important;
+}
+
+#restart-game {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-family: 'Architects Daughter', cursive, sans-serif;
+  border: 2px solid #333;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+#restart-game:hover {
+  background-color: #f1f1f1;
+  transform: scale(1.02);
+}
+
+/* 
+   ==============================
+         CANVAS DU JEU
+   ==============================
+*/
+#content-game-canvas {
+  display: flex;
+  justify-content: center;
+}
+
+/* Style du canvas pour rappeler un style "dessin" */
+#my_canvas {
+  background-color: #ffffff; /* fond du canvas */
+  border: 2px solid #333;        /* cadre foncé autour du canvas */
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
